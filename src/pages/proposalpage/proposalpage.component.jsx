@@ -100,7 +100,7 @@ class ProposalPage extends React.Component {
               </div>
               <div className="proposal-page-content-head-right">
                 <img
-                  src={`${process.env.API_URL}/images/users/${this.state.proposal.uploadBy.imageCover}`}
+                  src={`${process.env.REACT_APP_API_URL}/images/users/${this.state.proposal.uploadBy.imageCover}`}
                   alt="user"
                   className="proposal-page-content-head-right__avatar"
                 />

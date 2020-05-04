@@ -24,7 +24,7 @@ class Login extends React.Component {
 
     axios({
       method: "post",
-      url: `${process.env.API_URL}/v1/api/user/login`,
+      url: `${process.env.REACT_APP_API_URL}/v1/api/user/login`,
       data: this.state,
     }).then((res) => {
       const { token } = res.data;

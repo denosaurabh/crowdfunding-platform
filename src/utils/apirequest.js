@@ -17,7 +17,7 @@ class APIRequest {
 
     const resData = axios({
       method: this.method,
-      url: `${process.env.API_URL}/v1/api/${this.endpoint}`,
+      url: `${process.env.REACT_APP_API_URL}/v1/api/${this.endpoint}`,
       data: this.data,
       headers: {
         Authorization: `Bearer ${this.token}`,

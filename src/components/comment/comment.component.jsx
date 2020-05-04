@@ -11,7 +11,7 @@ const Comment = ({
 }) => (
   <div className="comment">
     <img
-      src={`${process.env.API_URL}/images/users/${imageCover}`}
+      src={`${process.env.REACT_APP_API_URL}/images/users/${imageCover}`}
       alt="user"
       className="comment__img"
     />

@@ -152,7 +152,7 @@ class SettingsPage extends React.Component {
                 {this.state.user ? (
                   <>
                     <img
-                      src={`${process.env.API_URL}/images/users/${this.state.user.imageCover}`}
+                      src={`${process.env.REACT_APP_API_URL}/images/users/${this.state.user.imageCover}`}
                       alt="user"
                       className="settings-page-content-bottom-box__img"
                     />

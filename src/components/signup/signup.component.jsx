@@ -24,7 +24,7 @@ class SignUp extends React.Component {
 
     axios({
       method: "post",
-      url: `${process.env.API_URL}/v1/api/user/signup`,
+      url: `${process.env.REACT_APP_API_URL}/v1/api/user/signup`,
       data: this.state,
     }).then((res) => {
       console.log(res);

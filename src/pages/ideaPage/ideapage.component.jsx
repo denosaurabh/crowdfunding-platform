@@ -39,7 +39,7 @@ class IdeaPage extends React.Component {
 
     axios({
       method: "get",
-      url: `${process.env.API_URL}/v1/api/idea/${ideaId}`,
+      url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}`,
     }).then((res) => {
       console.log(res);
 
@@ -55,7 +55,7 @@ class IdeaPage extends React.Component {
 
     axios({
       method: "post",
-      url: `${process.env.API_URL}/v1/api/idea/${ideaId}?func=upvote`,
+      url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}?func=upvote`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -144,7 +144,7 @@ class IdeaPage extends React.Component {
                   </p>
                 </div>
                 <img
-                  src={`${process.env.API_URL}/images/users/${this.state.idea.uploadBy.imageCover}`}
+                  src={`${process.env.REACT_APP_API_URL}/images/users/${this.state.idea.uploadBy.imageCover}`}
                   alt="user"
                   className="idea-page-sidebar-authorbox__img"
                 />
