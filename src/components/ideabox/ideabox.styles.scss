@@ -1,0 +1,85 @@
+.idea-box {  
+  padding: 20px;
+
+  //height: 270px;
+
+  background-color: #f8f8f8;
+  border: 1px solid #ededed;
+  border-radius: 9px;
+  
+  &:hover {
+    cursor: pointer;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;  
+    
+    &__heading {
+      color: #666666;
+      margin-bottom: 25px;
+    }
+
+    &__paragraph {
+      color: #737373;
+      font-size: 0.6rem;
+      line-height: 20px;
+      word-wrap: break-word;
+      
+      margin-bottom: 20px;
+    }
+
+    &__by {
+      width: 100%;
+      
+      font-size: 0.6rem;
+      font-weight: bold;
+      color: rgb(76, 76, 76);
+      
+      padding-bottom: 20px;
+    }
+    
+    &__data {
+      width: 100%;
+      font-size: 0.6rem;
+      
+      padding-bottom: 5px;
+    }
+
+    &-icons-box {
+      padding-top: 40%;
+      
+      display: grid;
+      grid-template-areas: "supportsvg upvotesvg rightarrowsvg";
+      grid-template-columns: 2fr 7fr 2fr;
+
+      text-align: right;
+
+      #support-svg {
+        margin-right: 5%;
+        grid-area: supportsvg;
+      }
+
+      #upvote-svg {
+        margin-right: 10%;
+        grid-area: upvotesvg;
+      }
+
+      #rightarrow-svg {
+        margin-right: 10%;
+        grid-area: rightarrowsvg;
+      }
+
+      #support-svg,
+      #upvote-svg,
+      #rightarrow-svg {
+        transition: 0.4s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

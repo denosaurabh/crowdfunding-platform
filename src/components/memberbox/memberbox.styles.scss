@@ -1,0 +1,39 @@
+.member-box {
+  display: flex;
+  flex-direction: row;
+
+  padding-bottom: 8px;
+  padding-top: 8px;
+
+  border-bottom: 1px solid #dadada;
+
+  &__img {
+    width: 20%;
+    height: 20%;
+    clip-path: circle(40% at 50% 50%);
+    margin-right: 10%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-data {
+    margin-top: 2%;
+
+    &__name {
+      font-size: 0.65rem;
+      padding-bottom: 10px;
+
+      &__admin {
+        padding-left: 20px;
+        
+        color: rgb(0, 72, 174);
+      }
+    }
+
+    &__work {
+      font-size: 0.5rem;
+    }
+  }
+}

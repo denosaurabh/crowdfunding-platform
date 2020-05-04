@@ -1,0 +1,45 @@
+.university-page {
+  &-content {
+    svg {
+      position: absolute;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__img {
+      border-radius: 7px;
+
+      margin-bottom: 4%;
+      margin-left: 5%;
+
+      width: 90%;
+      max-height: 75%;
+      height: auto;
+    }
+
+    &__heading {
+      margin-left: 5%;
+
+      padding-bottom: 1%;
+    }
+
+    &__span {
+      margin-left: 5%;
+      padding-bottom: 4%;
+    }
+
+    &__description {
+      margin-left: 5%;
+      margin-bottom: 4%;
+
+      line-height: 35px;
+      color: rgb(32, 32, 32);
+    }
+
+    &__button {
+      margin-left: 5%;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.idea-form {
+  width: 100%;
+  height: fit-content;
+
+  padding: 2%;
+
+  // Header
+  &-header {
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+
+    svg {
+      margin-right: 5%;
+      
+      &:hover {
+          cursor: pointer;
+      }
+    }
+  }
+
+  // Content
+  &-content {
+    width: 60%;
+    height: fit-content;
+
+    margin-left: 5%;
+    margin-right: 10%;
+
+    &-form {
+      width: 100%;
+      height: fit-content;
+
+      display: flex;
+      flex-direction: column;
+
+      select {
+        width: 40%;
+        padding: 0.8%;
+        border-radius: 5px;
+        margin: 2% 0 4% 0;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .submit-button {
+        margin-top: 10%;
+      }
+    }
+  }
+}
+
+// Textarea
+textarea {
+    height: 400px;
+}
+
+// CSS for all labels
+label {
+  font-family: Montserrat;
+  font-size: 0.8rem;
+  margin-top: 3%;
+}
+
+// CSS for all Fund Tiers Borders
+.--green-border {
+    margin-top: 3%;
+    
+  &:focus {
+    border: 1.5px solid #00ff75;
+  }
+}
+
+.--blue-border {
+    margin-top: 0%;
+    
+  &:focus {
+    border: 1.5px solid #56d6ff;
+  }
+}
+
+.--violet-border {
+    margin-top: 0%;
+    
+  &:focus {
+    border: 1.5px solid #e542ff;
+  }
+}
+
+.--pink-border {
+    margin-top: 0%;
+    
+  &:focus {
+    border: 1.5px solid #ff0099;
+  }
+}

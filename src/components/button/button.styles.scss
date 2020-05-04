@@ -1,0 +1,79 @@
+.button {
+  height: 50px;
+  color: white;
+
+  margin: 15px;
+  padding: 0 15px 0 15px;
+  
+  border-radius: 12px;
+
+  font-family: "Quicksand", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 120.5%;
+
+  letter-spacing: 0.01em;
+  outline: none;
+  border: none;
+
+  transition: 0.4s ease;
+
+  min-width: 130px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+// Color Identifier
+.--blue {
+  background: linear-gradient(
+    100.22deg,
+    #6c63ff 6.27%,
+    rgba(108, 99, 255, 0.74) 93.26%
+  );
+  box-shadow: 6px 8px 16px rgba(108, 99, 255, 0.47);
+
+  // transition-duration: 4s;
+
+  &:hover {
+    // transition-duration: 4s;
+
+    background: linear-gradient(
+      1.22deg,
+      #6c63ff 6.27%,
+      rgba(108, 99, 255, 0.74) 93.26%
+    );
+  }
+}
+
+.--pink {
+  background: linear-gradient(
+    100.22deg,
+    rgba(255, 0, 92, 0.96) 6.27%,
+    rgba(255, 0, 92, 0.5) 93.26%
+  );
+  box-shadow: 6px 8px 16px rgba(255, 0, 92, 0.47);
+
+  transition: 0.4s;
+
+  &:hover {
+    background: linear-gradient(
+      1.22deg,
+      rgba(255, 0, 92, 0.96) 6.27%,
+      rgba(255, 0, 92, 0.5) 93.26%
+    );
+    box-shadow: 6px 8px 16px rgba(255, 0, 92, 0.47);
+  }
+}
+
+// Widths Identifier
+.--small {
+  width: 100px;
+}
+
+.--wide {
+  width: 30%;
+}

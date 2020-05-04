@@ -1,37 +1,123 @@
 .App {
-  text-align: center;
+  /* width: 100vw;
+  height: 100vh; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Text Classes Modifiers */
+.--maintext {
+  font-family: "Quicksand", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.--subpara {
+  font-family: "Montserrat";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.--light {
+  color: #a2a2a2;
 }
 
-.App-link {
-  color: #61dafb;
+/* Font Sizes Classes */
+.--mainfont {
+  font-size: 1rem;
 }
 
-@keyframes App-logo-spin {
+.--smallfont {
+  font-size: 0.7rem;
+}
+
+/* MAIN GRID Modifiers */
+.--grid-box-2 {
+  position: fixed;
+
+  display: grid;
+  grid-template-areas: "navbar rightcontent";
+
+  grid-template-columns: 0.85fr 6fr 0fr;
+  /*grid-template-rows: 100%;*/
+
+  width: 100vw;
+  height: 100vh;
+
+  /*gap: 0 2%;*/
+}
+
+.--grid-box-3 {
+  position: fixed;
+
+  display: grid;
+  grid-template-areas: "navbar centercontent sidebar";
+
+  grid-template-columns: 0.85fr 4fr 2fr;
+  /*grid-template-rows: 100%;*/
+
+  width: 100vw;
+  height: 100vh;
+
+  /*gap: 0 2%;*/
+}
+
+.--grid-box-3-wide {
+  position: fixed;
+
+  display: grid;
+  grid-template-areas: "navbar centercontent sidebar";
+
+  grid-template-columns: 0.85fr 4.7fr 1.3fr;
+  /*grid-template-rows: 100%;*/
+
+  width: 100vw;
+  height: 100vh;
+
+  /*gap: 0 2%;*/
+}
+
+.--leftside-grid-box {
+  grid-area: navbar;
+}
+
+.--rightside-grid-box {
+  grid-area: rightcontent;
+  overflow-y: scroll;
+
+  padding: 2%;
+}
+
+/* --------------------------------- */
+.--center-content {
+  grid-area: centercontent;
+
+  padding: 3%;
+}
+
+.--sidebar {
+  grid-area: sidebar;
+
+  padding: 10% 3% 1% 5%;
+}
+
+/* Diableing Anchor Underline */
+a {
+  text-decoration: none !important;
+}
+
+/* Loading Bar */
+
+#loading {
+  animation: loading 2s linear infinite;
+
+  position: absolute;
+  top: 45%;
+  left: 45%;
+
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes loading {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

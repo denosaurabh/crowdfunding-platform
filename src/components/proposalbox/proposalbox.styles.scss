@@ -1,0 +1,103 @@
+.overlay-box {
+  border: 2px solid #6C63FF;
+
+  &-buttons {
+    width: 90%;
+    
+    display: flex;
+    flex-direction: row;
+
+    padding: 2%;
+    padding-left: 60%;
+
+    &__accept {
+      color: green;
+      font-weight: bold;
+
+      margin-left: 12%;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__decline {
+      color: red;
+      font-weight: bold;
+      
+      margin-left: auto;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .proposal-box {
+    opacity: 0.62;
+  }
+}
+
+.proposal-box {
+  width: 90%;
+  border-bottom: 1px solid #b0b0b0;
+  padding-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 2%;
+
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-size: 0.9rem;
+
+    padding-bottom: 15px;
+  }
+
+  &__description {
+    font-size: 0.65rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+
+    padding-bottom: 20px;
+
+    color: rgb(118, 118, 118);
+  }
+
+  &-info {
+    font-size: 0.54rem;
+    text-align: start;
+
+    display: grid;
+    grid-template-areas: "date upvotes comments";
+    grid-template-columns: 6fr 2fr 2fr;
+
+    &__date {
+      grid-area: date;
+      padding-top: 15px;
+    }
+
+    &__upvotes {
+      grid-area: upvotes;
+      color: #428eff;
+
+      svg {
+        position: relative;
+        top: 5px;
+        transform: scale(0.8);
+      }
+    }
+
+    &__comments {
+      grid-area: comments;
+      color: #ff005c;
+      padding-top: 15px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,274 @@
+.idea-page {
+  &-content {
+    overflow-y: scroll;
+
+    // Icon
+    #leftlightarrow {
+      margin-bottom: 4%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    // Left Content
+    &-description {
+      padding: 4%;
+
+      &__title {
+        color: #428eff;
+        font-size: 1.4rem;
+        padding-bottom: 4%;
+      }
+
+      &__para {
+        color: #444444;
+
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 186%;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+
+  // Right Content
+  &-sidebar {
+    height: 100%;
+
+    &-authorbox {
+      width: 90%;
+      height: 100px;
+      margin-bottom: 50px;
+
+      /* Container where auther and it's img is included */
+
+      &__img {
+        //position: relative;
+        //transform: translateY(-10%);
+
+        float: right;
+        clip-path: circle(40% at 50% 50%);
+
+        width: 80px;
+        height: 80px;
+
+        min-width: 50px;
+        min-height: 50px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &-author {
+      float: left;
+      text-align: right;
+      width: 70%;
+
+      &__name {
+        color: #797979;
+        font-size: 1.1rem;
+        padding-bottom: 1%;
+      }
+
+      &__passion {
+        color: #919191;
+        font-size: 0.7rem;
+        margin-bottom: 20px;
+      }
+    }
+
+    // Support Popup
+    &__support-popup {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.163);
+
+      animation: onPopUpLoadAnimation 0.5s 1 ease-in-out;
+
+      .popup-content {
+        position: relative;
+        top: 10%;
+        left: 10%;
+
+        width: 80%;
+        height: 80%;
+
+        padding: 2%;
+
+        background-color: white;
+        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+
+        animation: onPopUpContentLoadAnimation 0.5s 1 ease-in-out;
+
+        // Cut Svg
+        #CutSvg {
+          position: absolute;
+
+          top: 20px;
+          right: 10px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        // Left
+        &-left {
+          width: 60%;
+          height: 100%;
+
+          float: left;
+
+          padding: 2%;
+        }
+
+        // Right
+        &-right {
+          width: 40%;
+          height: 100%;
+
+          float: right;
+
+          padding: 1%;
+          padding-top: 7%;
+
+          &-form {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            &__label {
+              font-size: 0.7rem;
+              font-weight: 200;
+            }
+
+            &__input {
+              padding: 3%;
+              margin-top: 10px;
+              margin-bottom: 40px;
+
+              border-radius: 10px;
+              border: 1px solid rgb(194, 194, 194);
+
+              //border-bottom: 1px solid rgb(113, 113, 113);
+
+              &::placeholder {
+                font-size: 1rem !important;
+                color: rgb(218, 218, 218);
+              }
+
+              &:focus {
+                border: 1px solid rgb(113, 113, 113);
+              }
+            }
+
+            &__button {
+              width: 100%;
+              height: 50px;
+
+              color: white;
+              background-color: rgba(108, 99, 255, 0.74);
+              border-radius: 5px;
+              
+              font-size: 0.8rem;
+              font-weight: bold;
+              
+              border: none;
+              outline: none;
+              
+              transition: 0.5s;
+              
+              &:hover {
+                cursor: pointer;
+                
+                transform: scale(1.01);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Progress Bar
+    &-milestone {
+      width: 100%;
+      padding-bottom: 40px;
+
+      display: flex;
+      flex-direction: column;
+
+      &__label {
+        font-size: 0.7rem;
+        text-align: left;
+        font-weight: medium;
+        padding-bottom: 10px;
+        color: #428eff;
+
+        &-span {
+          text-align: right;
+        }
+      }
+
+      &__progress {
+        width: 90%;
+        height: 8px;
+        border: none;
+        border-radius: 7px;
+      }
+    }
+
+    // Diamond Amount Box
+    &-diamonds-box {
+      width: 90%;
+      padding-top: 20px;
+      padding-bottom: 40px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    &__pleadge {
+      font-size: 0.6rem;
+      padding-left: 5%;
+      padding-right: 15%;
+    }
+
+    &__upvotes {
+      color: #ff005c;
+      font-size: 0.6rem;
+      padding-left: 20px;
+    }
+  }
+}
+
+@keyframes onPopUpLoadAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes onPopUpContentLoadAnimation {
+  from {
+    transform: scale(0.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,28 @@
+.input {
+  width: 65%;
+  max-width: 400px;
+  
+  height: 40px;
+
+  background-color: #f1f1f1;
+  color: #777777;
+
+  border: none;
+  border-radius: 7px;
+
+  padding: 4px 14px;
+  margin: 20px 20px 20px 0;
+
+  font-family: "Montserrat";
+  font-weight: normal;
+  
+  transition: 0.5s;
+
+  &:focus {
+    outline: none;
+    border: 1px solid rgb(74, 74, 74);
+    background-color: #fff;
+    
+   // box-shadow: 6px 8px 17px rgba(189, 189, 189, 0.17);
+  }
+}

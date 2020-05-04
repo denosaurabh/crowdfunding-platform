@@ -1,0 +1,36 @@
+.university-box {
+  display: grid;
+  grid-template-areas: "img" "title" "para";
+  grid-template-rows: 50% 10% 40%;
+
+  padding: 2%;
+
+  height: 400px;
+  min-height: 100px;
+
+  &__img {
+    grid-area: img;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+
+    padding-bottom: 20px;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__para {
+    grid-area: para;
+    font-size: 0.6rem;
+
+    line-height: 25px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

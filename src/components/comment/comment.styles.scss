@@ -1,0 +1,57 @@
+.comment {
+  width: 90%;
+  height: fit-content;
+    
+  display: grid;
+  grid-template-areas:
+    "img user"
+    "img date"
+    "img description";
+
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 30px 40px auto;
+
+  margin-bottom: 20px;
+  
+  border-bottom: 1px solid #D8D8D8;
+
+  &__img {
+    grid-area: img;
+    width: 63px;
+    height: 63px;
+    clip-path: circle(40% at 50% 50%);
+  }
+
+  &__user {
+    grid-area: user;
+    font-size: 0.9rem;
+    color: #555555;
+    
+    &__work {
+        color: rgb(25, 25, 25);
+        font-size: 0.6rem;
+        font-weight: normal;
+        
+        padding: 0% 1% 0.3% 1%;
+        
+        background-color: #F6DF9E;
+        
+        border-radius: 10px;
+    }
+  }
+
+  &__date {
+    grid-area: date;
+    font-size: 0.6rem;
+  }
+
+  &__description {
+    grid-area: description;
+    font-size: 0.7rem;
+    color: #272727;
+    font-weight: 500;
+    line-height: 25px;
+    
+    padding-bottom: 20px;
+  }
+}

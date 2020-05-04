@@ -1,0 +1,38 @@
+.login-page-box {
+    width: 25%;
+    height: 100%;
+    min-width: 300px;
+        
+    margin: 0;
+    padding-top: 14px;
+    
+    display: grid;
+    grid-template-areas: "heading" "email" "password" "button";
+    
+    grid-template-rows: 15% 10% 58% auto;
+    
+    &__heading {
+        grid-area: heading;
+    }
+    
+    &__email {
+        margin: 0 !important;
+        
+        grid-area: email;
+        width: 90% !important;
+    }
+    
+    &__password {
+        margin: 0 !important;
+        
+        grid-area: password;
+        width: 90% !important;
+    }
+    
+    &__button {
+        grid-area: button;
+        margin-left: 0% !important;
+    }
+
+    
+}
