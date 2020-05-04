@@ -38,7 +38,7 @@ class UniversityPage extends React.Component {
           <div className="university-page-content --rightside-grid-box">
             <LeftLightArrowSvg onClick={() => this.props.history.goBack()} />
             <img
-              src={`http://localhost:8000/images/university/${this.state.data.image}`}
+              src={`${process.env.API_URL}/images/university/${this.state.data.image}`}
               alt="university"
               className="university-page-content__img"
             />

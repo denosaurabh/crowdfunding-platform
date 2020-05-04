@@ -5,7 +5,7 @@ import "./memberbox.styles.scss";
 const MemberBox = ({ name, imageCover, job, isAdmin }) => (
   <div className="member-box">
     <img
-      src={`http://localhost:8000/images/users/${imageCover}`}
+      src={`${process.env.API_URL}/images/users/${imageCover}`}
       alt=""
       className="member-box__img"
     />

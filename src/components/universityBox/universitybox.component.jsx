@@ -9,7 +9,7 @@ const UniversityBox = ({ _id, name, description, image, history }) => (
     onClick={() => history.push(`/university/${_id}`)}
   >
     <img
-      src={`http://localhost:8000/images/university/${image}`}
+      src={`${process.env.API_URL}/images/university/${image}`}
       alt="university"
       className="university-box__img"
     />

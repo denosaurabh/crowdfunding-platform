@@ -17,7 +17,7 @@ class APIRequest {
 
     const resData = axios({
       method: this.method,
-      url: `http://localhost:8000/v1/api/${this.endpoint}`,
+      url: `${process.env.API_URL}/v1/api/${this.endpoint}`,
       data: this.data,
       headers: {
         Authorization: `Bearer ${this.token}`,

@@ -33,7 +33,7 @@ class IdeaFormPage extends React.Component {
 
     axios({
       method: "post",
-      url: "http://localhost:8000/v1/api/idea",
+      url: `${process.env.API_URL}/v1/api/idea`,
       data: {
         ...this.state,
         fundTiers: [
