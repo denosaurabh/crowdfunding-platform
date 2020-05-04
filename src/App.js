@@ -29,6 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log(process.env.REACT_APP_API_URL);
     console.log("Application has started successfully! 👍");
   }
 
