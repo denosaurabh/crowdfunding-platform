@@ -62,7 +62,7 @@
 
         width: 340px;
         min-width: 340px;
-        height: 400px;
+        height: fit-content;
 
         padding: 1.5% 2% 2% 2%;
 
@@ -89,7 +89,28 @@
 
         &__work {
           margin-top: 30px;
-          margin-bottom: auto;
+          margin-bottom: 20px;
+        }
+
+        &__account_button {
+          background-color: rgba(108, 99, 255, 0.74);
+          border-radius: 5px;
+          
+          padding: 4% 10%;
+          margin-top: 40px;
+          
+          font-weight: bold;
+          font-size: 0.9rem;
+          color: white;
+          
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        
+        &__account_span {
+          margin-top: 10px;
+          font-size: 0.6rem;
         }
       }
 

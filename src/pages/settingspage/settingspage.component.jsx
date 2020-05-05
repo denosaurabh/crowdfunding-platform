@@ -17,7 +17,7 @@ class SettingsPage extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = { accountButtonTextValue: "Check Account" };
 
     this.onEditClick = this.onEditClick.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
@@ -25,6 +25,8 @@ class SettingsPage extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
+
+    this.onAccountClick = this.onAccountClick.bind(this);
   }
 
   async componentDidMount() {
@@ -81,6 +83,16 @@ class SettingsPage extends React.Component {
     const { name, value } = e.target;
 
     this.setState({ [name]: value });
+  }
+
+  // Get Account Info
+  async onAccountClick() {
+    const res = await new APIRequest("get", "user/account").request();
+
+    this.setState({
+      accountLink: res.data.data.link,
+      accountButtonTextValue: "Go to link to see account",
+    });
   }
 
   render() {
@@ -168,6 +180,22 @@ class SettingsPage extends React.Component {
                     <span className="settings-page-content-bottom-box__joinedon --subpara --smallfont --light">
                       Joined On: {this.state.user.joinedOn || "April 2020"}
                     </span>
+                    {localStorage.getItem("ACCOUNT_VERIFIED") === "true" ? (
+                      <a
+                        className="settings-page-content-bottom-box__account_button --maintext"
+                        onClick={this.onAccountClick}
+                        href={this.state.accountLink}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {this.state.accountButtonTextValue}
+                      </a>
+                    ) : null}
+                    {this.state.accountLink ? (
+                      <span className="settings-page-content-bottom-box__account_span --subpara">
+                        This is for Security purpose*
+                      </span>
+                    ) : null}
                   </>
                 ) : (
                   <LoadingSvg />

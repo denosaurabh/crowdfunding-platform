@@ -37,6 +37,10 @@ class Login extends React.Component {
         "USER_UNIVERSITY",
         res.data.data.user.university ? "true" : "false"
       );
+      localStorage.setItem(
+        "ACCOUNT_VERIFIED",
+        res.data.data.user.accountVerified
+      );
 
       this.props.history.push("/home");
 
