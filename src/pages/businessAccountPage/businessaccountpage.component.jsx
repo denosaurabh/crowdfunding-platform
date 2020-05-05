@@ -6,7 +6,7 @@ import { ReactComponent as BusinessAccountPageSvg } from "../../assets/svg/busin
 
 class BusinessAccountPage extends React.Component {
   state = {
-    url: `https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://mariorossi-frontend.herokuapp.com/account/verify&client_id=ca_HCgEWVT2xtb5RB8xhL84GjlF26HKHAAU`,
+    url: `https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://mariorossi-frontend.herokuapp.com/account/verify&client_id=ca_HCgEWVT2xtb5RB8xhL84GjlF26HKHAAU&suggested_capabilities[]=card_payments`,
   };
 
   render() {
