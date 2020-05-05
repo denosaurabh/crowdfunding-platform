@@ -10,11 +10,10 @@ class AccountVerify extends React.Component {
   state = {};
 
   async componentDidMount() {
-    const authCode = this.props.location.query.code;
+    console.log(this.props.location.search);
+    const query = this.props.location.search;
 
-    const res = await new APIRequest("patch", "user/verify/account", {
-      code: authCode,
-    }).request()
+    const res = await new APIRequest("patch", `user/verify/account/${query}`).request();
 
     if (res.data.status === "success") {
       this.props.history.push("/home");
