@@ -20,6 +20,7 @@ import ProposalFormPage from "./pages/proposalformpage/proposalformpage.componen
 import IdeaFormPage from "./pages/Ideaformpage/Ideaformpage.component";
 import SettingsPage from "./pages/settingspage/settingspage.component";
 import BusinessAccountPage from "./pages/businessAccountPage/businessaccountpage.component";
+import AccountVerify from "./pages/accountVerify/accountverify.component";
 
 class App extends React.Component {
   constructor() {
@@ -57,6 +58,8 @@ class App extends React.Component {
               path="/account/business"
               component={BusinessAccountPage}
             />
+            <Route exact path="/account/verify" component={AccountVerify} />
+
             <Route
               exact
               path="/myuniversity/proposal/:id"

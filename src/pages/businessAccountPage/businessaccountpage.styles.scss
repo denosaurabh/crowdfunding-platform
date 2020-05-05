@@ -20,12 +20,13 @@
     }
 
     &__description {
-      padding-bottom: 40px;
+      padding-bottom: 80px;
     }
 
-    &__button {
-      width: 70%;
-      height: 50px;
+    &__href {
+      // width: 200px;
+      // height: 100px;
+      padding: 3% 10%;
 
       font-size: 0.9rem;
       font-weight: bold;

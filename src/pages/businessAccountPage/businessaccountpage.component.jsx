@@ -6,7 +6,7 @@ import { ReactComponent as BusinessAccountPageSvg } from "../../assets/svg/busin
 
 class BusinessAccountPage extends React.Component {
   state = {
-    url: `https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_HCgEWVT2xtb5RB8xhL84GjlF26HKHAAU`,
+    url: `https://connect.stripe.com/express/oauth/authorize?client_id=ca_HCgEWVT2xtb5RB8xhL84GjlF26HKHAAU`,
   };
 
   render() {
@@ -22,9 +22,12 @@ class BusinessAccountPage extends React.Component {
             make account to show your dream in world start to get funds from
             your Idea
           </p>
-          <button className="business-account-content__button --maintext">
+          <a
+            className="business-account-content__href --maintext"
+            href={this.state.url}
+          >
             Make Account
-          </button>
+          </a>
         </div>
       </div>
     );
