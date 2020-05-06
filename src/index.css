@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #ffffff;
+  background-color: rgb(253, 253, 253);
 
   min-height: 100%; /* Simple hack for Full Height, case of Grid */
 }

@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import {
   ElementsConsumer,
-  CardElement,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
@@ -13,7 +12,6 @@ import "./ideapage.styles.scss";
 import NavBar from "../../components/navbar/navbar.component";
 import Button from "../../components/button/button.component";
 import Diamond from "../../components/diamondSvg/diamondsvg.component";
-import InputField from "../../components/fieldInput/fieldinput.component";
 
 import { ReactComponent as LeftLightArrowSvg } from "../../assets/svg/leftlightarrow.svg";
 import { ReactComponent as CutSvg } from "../../assets/svg/cut.svg";
@@ -27,9 +25,11 @@ class IdeaPage extends React.Component {
     this.state = {
       title: "",
       popupHidden: true,
+      fundIdeaAmount: null,
     };
 
     this.onUpvoteClick = this.onUpvoteClick.bind(this);
+    this.onPopupDiamondClick = this.onPopupDiamondClick.bind(this);
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ class IdeaPage extends React.Component {
       console.log(res);
 
       const data = res.data.data.data;
-      this.setState({ idea: data });
+      this.setState({ idea: data, fundIdeaAmount: data.fundTiers[0] });
     });
   }
 
@@ -106,6 +106,12 @@ class IdeaPage extends React.Component {
       }
     }
   };
+
+  onPopupDiamondClick(e, amount) {
+    console.log(amount);
+
+    this.setState({ fundIdeaAmount: amount });
+  }
 
   render() {
     return (
@@ -188,6 +194,48 @@ class IdeaPage extends React.Component {
                         <h3 className="--mainfont --maintext">
                           Fund to Idea :D
                         </h3>
+                        <div className="popup-content-left-box">
+                          <Diamond
+                            color="#00FF75"
+                            amount={this.state.idea.fundTiers[0]}
+                            onClick={(e) =>
+                              this.onPopupDiamondClick(
+                                e,
+                                this.state.idea.fundTiers[0]
+                              )
+                            }
+                          />
+                          <Diamond
+                            color="#56D6FF"
+                            amount={this.state.idea.fundTiers[1]}
+                            onClick={(e) =>
+                              this.onPopupDiamondClick(
+                                e,
+                                this.state.idea.fundTiers[1]
+                              )
+                            }
+                          />
+                          <Diamond
+                            color="#E542FF"
+                            amount={this.state.idea.fundTiers[2]}
+                            onClick={(e) =>
+                              this.onPopupDiamondClick(
+                                e,
+                                this.state.idea.fundTiers[2]
+                              )
+                            }
+                          />
+                          <Diamond
+                            color="#FF0099"
+                            amount={this.state.idea.fundTiers[3]}
+                            onClick={(e) =>
+                              this.onPopupDiamondClick(
+                                e,
+                                this.state.idea.fundTiers[3]
+                              )
+                            }
+                          />
+                        </div>
                       </div>
                       <div className="popup-content-right">
                         <ElementsConsumer>
@@ -236,7 +284,8 @@ class IdeaPage extends React.Component {
                                   className="popup-content-right-form__button --maintext"
                                   type="submit"
                                 >
-                                  Fund to Idea
+                                  Fund {this.state.fundIdeaAmount}$ (usd) to
+                                  Idea
                                 </button>
                               </form>
                             );

@@ -1,28 +1,22 @@
 .proposals-page {
   &-content {
     overflow-y: scroll;
-    
+
     &__heading {
       padding-bottom: 20px;
     }
 
     &-menu {
       margin-bottom: 50px;
-      
+
       &__text {
         font-size: 0.8rem;
         padding-right: 5%;
-        
+
         &:hover {
-            cursor: pointer;
+          cursor: pointer;
         }
       }
     }
-    
-    // All Proposals
-    &-box {
-      
-    }
   }
-
 }

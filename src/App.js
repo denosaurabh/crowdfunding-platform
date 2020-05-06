@@ -1,26 +1,28 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import "./App.css";
+import './App.css';
 
-// import NavBar from "./components/navbar/navbar.component";
+import { selectUser } from './redux/userReducer/user.selector';
+import { selectError } from './redux/errorReducer/error.selectors';
 
-import ErrorHandler from "./components/errorHandler/errorhandler.component";
+import ErrorHandler from './components/errorHandler/errorhandler.component';
 
-import LandingPage from "./pages/landingpage/landingpage.component";
-import LoginPage from "./pages/loginPage/loginpage.component";
-import ProjectsPage from "./pages/projectsPage/projectspage.cmponent";
-import IdeaPage from "./pages/ideaPage/ideapage.component";
-import UniversityPage from "./pages/universitypage/universitypage.component";
-import ProposalsPage from "./pages/proposalspage/proposalspage.component";
-import ProposalPage from "./pages/proposalpage/proposalpage.component";
-import PublishIdeaPage from "./pages/publishIdeapage/publishIdeapage.component";
-import ProposalFormPage from "./pages/proposalformpage/proposalformpage.component";
-import IdeaFormPage from "./pages/Ideaformpage/Ideaformpage.component";
-import SettingsPage from "./pages/settingspage/settingspage.component";
-import BusinessAccountPage from "./pages/businessAccountPage/businessaccountpage.component";
-import AccountVerify from "./pages/accountVerify/accountverify.component";
+import LandingPage from './pages/landingpage/landingpage.component';
+import LoginPage from './pages/loginPage/loginpage.component';
+import ProjectsPage from './pages/projectsPage/projectspage.cmponent';
+import IdeaPage from './pages/ideaPage/ideapage.component';
+import UniversityPage from './pages/universitypage/universitypage.component';
+import UserUniversityContainerPage from './pages/userUniversityPage/useruniversity.container';
+import ProposalPage from './pages/proposalpage/proposalpage.component';
+import PublishIdeaPage from './pages/publishIdeapage/publishIdeapage.component';
+import ProposalFormPage from './pages/proposalformpage/proposalformpage.component';
+import IdeaFormPage from './pages/Ideaformpage/Ideaformpage.component';
+import SettingsPage from './pages/settingspage/settingspage.component';
+import BusinessAccountPage from './pages/businessAccountPage/businessaccountpage.component';
+import AccountVerify from './pages/accountVerify/accountverify.component';
 
 class App extends React.Component {
   constructor() {
@@ -31,7 +33,7 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log(process.env.REACT_APP_API_URL);
-    console.log("Application has started successfully! 👍");
+    console.log('Application has started successfully! 👍');
   }
 
   // Error Handling
@@ -48,18 +50,27 @@ class App extends React.Component {
         {!this.state.hasError ? (
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/auth" component={LoginPage} />
+            <Route
+              exact
+              path="/auth"
+              render={() =>
+                this.props.currentUser ? <Redirect to="/home" /> : <LoginPage />
+              }
+            />
             <Route exact path="/home" component={ProjectsPage} />
             <Route exact path="/idea/:id" component={IdeaPage} />
             <Route exact path="/university/:id" component={UniversityPage} />
-            <Route exact path="/myuniversity" component={ProposalsPage} />
+            <Route
+              exact
+              path="/myuniversity"
+              component={UserUniversityContainerPage}
+            />
             <Route
               exact
               path="/account/business"
               component={BusinessAccountPage}
             />
             <Route exact path="/account/verify" component={AccountVerify} />
-
             <Route
               exact
               path="/myuniversity/proposal/:id"
@@ -82,8 +93,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentError: state.error.currentError,
+const mapStateToProps = createStructuredSelector({
+  currentError: selectError,
+  currentUser: selectUser,
 });
 
 export default connect(mapStateToProps)(App);

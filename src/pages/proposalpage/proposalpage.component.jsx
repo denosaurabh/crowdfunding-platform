@@ -10,7 +10,6 @@ import { ReactComponent as SendSvg } from "../../assets/svg/send.svg";
 import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
 
 import Navbar from "../../components/navbar/navbar.component";
-import Sidebar from "../../components/sidebar/sidebar.component";
 import InputField from "../../components/fieldInput/fieldinput.component";
 import Comment from "../../components/comment/comment.component";
 

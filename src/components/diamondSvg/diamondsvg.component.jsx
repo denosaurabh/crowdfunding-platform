@@ -2,8 +2,8 @@ import React from "react";
 
 import "./diamond.styles.scss";
 
-const DiamondSvg = ({ color, amount }) => (
-  <div className="diamond-svg">
+const DiamondSvg = ({ color, amount, ...otherProps }) => (
+  <div className="diamond-svg" {...otherProps}>
     <svg
       width="33"
       height="37"

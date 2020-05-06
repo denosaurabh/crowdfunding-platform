@@ -8,7 +8,7 @@ import { ReactComponent as SupportSvg } from "../../assets/svg/support.svg";
 import { ReactComponent as UpvoteBorderSvg } from "../../assets/svg/upvote.svg";
 import { ReactComponent as UpvoteFillSvg } from "../../assets/svg/upvote-fill.svg";
 
-import { ReactComponent as RightarrowSvg } from "../../assets/svg/rightarrow.svg";
+// import { ReactComponent as RightarrowSvg } from "../../assets/svg/rightarrow.svg";
 
 const IdeaBox = ({
   title,

@@ -32,7 +32,7 @@
   display: grid;
   grid-template-areas: "navbar rightcontent";
 
-  grid-template-columns: 0.85fr 6fr 0fr;
+  grid-template-columns: 0.4fr 5.6fr 0fr; /* 6 */
   /*grid-template-rows: 100%;*/
 
   width: 100vw;
@@ -47,7 +47,7 @@
   display: grid;
   grid-template-areas: "navbar centercontent sidebar";
 
-  grid-template-columns: 0.85fr 4fr 2fr;
+  grid-template-columns: 0.4fr 4.3fr 1.3fr; /* 6fr */
   /*grid-template-rows: 100%;*/
 
   width: 100vw;
@@ -62,7 +62,7 @@
   display: grid;
   grid-template-areas: "navbar centercontent sidebar";
 
-  grid-template-columns: 0.85fr 4.7fr 1.3fr;
+  grid-template-columns: 0.4fr 4.7fr 0.9fr; /* 6fr */
   /*grid-template-rows: 100%;*/
 
   width: 100vw;

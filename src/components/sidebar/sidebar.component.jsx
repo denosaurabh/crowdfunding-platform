@@ -10,6 +10,7 @@ import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
 
 import MemberBox from "../memberbox/memberbox.component";
 import InputField from "../fieldInput/fieldinput.component";
+import withSpinner from '../withSpinner/withSpinner.component'
 
 class Sidebar extends React.Component {
   constructor() {
@@ -97,4 +98,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+export default withSpinner(Sidebar);

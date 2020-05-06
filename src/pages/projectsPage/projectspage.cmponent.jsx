@@ -258,6 +258,8 @@ class ProjectsPage extends React.Component {
                   return <IdeaCard key={i} {...el} />;
                 } else if (this.state.searchtype === "university") {
                   return <UniversityCard key={i} {...el} />;
+                } else {
+                  return null
                 }
               })
             ) : (

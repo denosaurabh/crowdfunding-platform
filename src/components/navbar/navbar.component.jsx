@@ -1,13 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import "./navbar.styles.scss";
+import { selectUser } from '../../redux/userReducer/user.selector';
 
-import { ReactComponent as AppLogo } from "./../../assets/svg/logo.svg";
-import { ReactComponent as HomeSvg } from "./../../assets/svg/home.svg";
-import { ReactComponent as ProposalsSvg } from "./../../assets/svg/proposals.svg";
-import { ReactComponent as UniversitySvg } from "./../../assets/svg/university.svg";
-import { ReactComponent as SettingsSvg } from "./../../assets/svg/settings.svg";
+import './navbar.styles.scss';
+
+import { ReactComponent as AppLogo } from './../../assets/svg/logo.svg';
+import { ReactComponent as HomeSvg } from './../../assets/svg/home.svg';
+import { ReactComponent as ProposalsSvg } from './../../assets/svg/proposals.svg';
+import { ReactComponent as UniversitySvg } from './../../assets/svg/university.svg';
+import { ReactComponent as SettingsSvg } from './../../assets/svg/settings.svg';
 
 class NavBar extends React.Component {
   constructor() {
@@ -17,6 +20,8 @@ class NavBar extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+
     return (
       <div className="navbar --leftside-grid-box">
         <Link to="/">
@@ -27,32 +32,50 @@ class NavBar extends React.Component {
           <Link to="/home">
             <li className="navbar-ul-li">
               <HomeSvg />
-              <span className="navbar-ul-li-span">Home</span>
             </li>
           </Link>
           <li className="navbar-ul-li">
             <ProposalsSvg />
-            <span className="navbar-ul-li-span">Proposals</span>
           </li>
-          {localStorage.getItem("USER_UNIVERSITY") === "true" ? (
+          {currentUser?.university ? (
             <Link to="/myuniversity">
               <li className="navbar-ul-li">
                 <UniversitySvg />
-                <span className="navbar-ul-li-span">Your Party</span>
               </li>
             </Link>
           ) : null}
 
-          <Link to="/settings">
-            <li className="navbar-ul-li --most-bottom">
-              <SettingsSvg />
-              <span className="navbar-ul-li-span">Settings</span>
-            </li>
-          </Link>
+          {currentUser ? (
+            <Link to="/settings">
+              <li className="navbar-ul-li --most-bottom">
+                <SettingsSvg />
+              </li>
+            </Link>
+          ) : null}
         </ul>
       </div>
     );
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  currentUser: selectUser(state),
+});
+
+export default connect(mapStateToProps)(NavBar);
+
+/*
+
+  JUNK
+
+  
+                <span className="navbar-ul-li-span">Home</span>
+
+            <span className="navbar-ul-li-span">Proposals</span>
+
+                <span className="navbar-ul-li-span">Your Party</span>
+
+              <span className="navbar-ul-li-span">Settings</span>
+
+
+*/

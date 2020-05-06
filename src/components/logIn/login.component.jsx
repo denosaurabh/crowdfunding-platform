@@ -1,11 +1,12 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setCurrentUserStartAsync } from '../../redux/userReducer/user.actions';
 
-import "./login.styles.scss";
+import './login.styles.scss';
 
-import Button from "../../components/button/button.component";
-import FieldInput from "../../components/fieldInput/fieldinput.component";
+import Button from '../../components/button/button.component';
+import FieldInput from '../../components/fieldInput/fieldinput.component';
 
 class Login extends React.Component {
   constructor() {
@@ -20,45 +21,18 @@ class Login extends React.Component {
   onSubmitClickHandler(e) {
     e.preventDefault();
 
-    console.log(this.state);
-
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/v1/api/user/login`,
-      data: this.state,
-    }).then((res) => {
-      const { token } = res.data;
-      console.log(res.data);
-
-      localStorage.clear();
-      localStorage.setItem("USER_TOKEN", token);
-      localStorage.setItem("USER_ID", res.data.data.user._id);
-      localStorage.setItem(
-        "USER_UNIVERSITY",
-        res.data.data.user.university ? "true" : "false"
-      );
-      localStorage.setItem(
-        "ACCOUNT_VERIFIED",
-        res.data.data.user.accountVerified
-      );
-
-      this.props.history.push("/home");
-
-      console.log(res);
-    });
+    const { setCurrentUserStartAsync } = this.props;
+    setCurrentUserStartAsync(this.state);
   }
 
   onInputChange(e) {
-    console.log("Something Changed !");
-
     const { name, value } = e.target;
-
     this.setState({ [name]: value });
   }
 
   render() {
     return (
-      <form action="">
+      <form onSubmit={this.onSubmitClickHandler}>
         <div className="login-page-box">
           <h3 className="login-page-box__heading --maintext">
             Login on ( Idea App )
@@ -93,4 +67,8 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUserStartAsync: (data) => dispatch(setCurrentUserStartAsync(data, 'login')),
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(Login));
