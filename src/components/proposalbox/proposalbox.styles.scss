@@ -1,21 +1,36 @@
-.overlay-box {
-  border: 2px solid #6C63FF;
+.proposal-accepted {
+  width: auto;
+  height: 50px;
+
+  margin-left: 15%;
+  margin-right: 15%;
+  padding: 1.3%;
+
+  background-color: #FFE37E;
+
+  &-heading {
+    float: left;
+
+    width: 50%;
+
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
 
   &-buttons {
-    width: 90%;
-    
+    float: right;
+
+    width: 50%;
+
     display: flex;
     flex-direction: row;
-
-    padding: 2%;
-    padding-left: 60%;
 
     &__accept {
       color: green;
       font-weight: bold;
 
-      margin-left: 12%;
-      
+      margin-left: 45%;
+
       &:hover {
         cursor: pointer;
       }
@@ -24,26 +39,34 @@
     &__decline {
       color: red;
       font-weight: bold;
-      
+
       margin-left: auto;
-      
+      margin-right: 4%;
+
       &:hover {
         cursor: pointer;
       }
     }
   }
-  
+
   .proposal-box {
     opacity: 0.62;
   }
 }
 
 .proposal-box {
-  width: 90%;
-  border-bottom: 1px solid #b0b0b0;
+  width: 70%;
+
   padding-bottom: 30px;
-  margin-top: 30px;
-  margin-left: 2%;
+  padding: 4%;
+
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 40px rgba(241, 241, 241, 0.918);
 
   display: flex;
   flex-direction: column;
@@ -55,7 +78,7 @@
   }
 
   &__description {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-style: normal;
     font-weight: 600;
     line-height: 23px;
@@ -63,7 +86,7 @@
 
     padding-bottom: 20px;
 
-    color: rgb(118, 118, 118);
+    color: rgb(133, 133, 133);
   }
 
   &-info {
@@ -71,7 +94,7 @@
     text-align: start;
 
     display: grid;
-    grid-template-areas: "date upvotes comments";
+    grid-template-areas: 'date upvotes comments';
     grid-template-columns: 6fr 2fr 2fr;
 
     &__date {

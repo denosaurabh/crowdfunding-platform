@@ -8,8 +8,19 @@
 
       text-align: end;
 
+      &__heading {
+        float: left;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #2196f3;
+      }
+
       #search-svg {
         transform: translateY(30%);
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -18,8 +29,7 @@
       height: fit-content;
 
       &__heading {
-        font-size: 1.2rem;
-        color: #787878;
+        font-size: 0.8rem;
 
         margin-bottom: 1%;
       }
@@ -54,10 +64,13 @@
 
       // Dropdown
       &-dropdown {
-        position: absolute;
-        right: 4%;
+        float: right;
+        
+        position: relative;
+        bottom: 7%;
+        right: 2%;
 
-        display: inline-block;
+        // display: inline-block;
 
         padding: 0% 1% 0.7% 1%;
         background-color: rgb(241, 241, 241);
@@ -116,7 +129,7 @@
         }
 
         .checkmark:after {
-          content: "";
+          content: '';
           position: absolute;
           display: none;
         }

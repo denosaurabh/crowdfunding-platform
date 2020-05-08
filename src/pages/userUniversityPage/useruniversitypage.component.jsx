@@ -7,7 +7,6 @@ import UniversityProposalsPreview from '../../components/university-proposals-pr
 
 import Sidebar from '../../components/sidebar/sidebar.component';
 
-
 class UserUniversityPage extends React.Component {
   constructor() {
     super();
@@ -24,19 +23,14 @@ class UserUniversityPage extends React.Component {
   }
 
   render() {
-    const {
-      university,
-      members,
-      proposals,
-      isLoading,
-    } = this.props;
+    const { university, members, proposals, isLoading } = this.props;
 
     return (
       <div className="proposals-page --grid-box-3-wide">
         <Navbar />
         <div className="proposals-page-content --center-content">
           <h2 className="proposals-page-content__heading --maintext">
-            Proposals
+            Your University Proposals
           </h2>
           <div className="proposals-page-content-menu">
             <span className="proposals-page-content-menu__text --subpara">

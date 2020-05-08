@@ -23,6 +23,7 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
+    "dev": "set `REACT_APP_API_URL=http://localhost:8000` && npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

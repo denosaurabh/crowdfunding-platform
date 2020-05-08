@@ -1,30 +1,30 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 import {
   ElementsConsumer,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
-} from "@stripe/react-stripe-js";
+} from '@stripe/react-stripe-js';
 
-import "./ideapage.styles.scss";
+import './ideapage.styles.scss';
 
-import NavBar from "../../components/navbar/navbar.component";
-import Button from "../../components/button/button.component";
-import Diamond from "../../components/diamondSvg/diamondsvg.component";
+import NavBar from '../../components/navbar/navbar.component';
+import Button from '../../components/button/button.component';
+import Diamond from '../../components/diamondSvg/diamondsvg.component';
 
-import { ReactComponent as LeftLightArrowSvg } from "../../assets/svg/leftlightarrow.svg";
-import { ReactComponent as CutSvg } from "../../assets/svg/cut.svg";
-import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
-import APIRequest from "../../utils/apirequest";
+import { ReactComponent as LeftLightArrowSvg } from '../../assets/svg/leftlightarrow.svg';
+import { ReactComponent as CutSvg } from '../../assets/svg/cut.svg';
+import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
+import APIRequest from '../../utils/apirequest';
 
 class IdeaPage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      title: "",
-      popupHidden: true,
+      title: '',
+      popupHidden: false,
       fundIdeaAmount: null,
     };
 
@@ -38,7 +38,7 @@ class IdeaPage extends React.Component {
     const ideaId = this.props.match.params.id;
 
     axios({
-      method: "get",
+      method: 'get',
       url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}`,
     }).then((res) => {
       console.log(res);
@@ -50,11 +50,11 @@ class IdeaPage extends React.Component {
 
   onUpvoteClick() {
     const ideaId = this.props.match.params.id;
-    const token = localStorage.getItem("USER_TOKEN");
+    const token = localStorage.getItem('USER_TOKEN');
     console.log(token);
 
     axios({
-      method: "post",
+      method: 'post',
       url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}?func=upvote`,
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ class IdeaPage extends React.Component {
     }).then((res) => {
       console.log(res);
 
-      if (res.data.result === "Upvoted") {
+      if (res.data.result === 'Upvoted') {
         this.setState((prevState) => {
           return {
             idea: { upvotes: prevState.idea.upvotes + 1, ...prevState.idea },
@@ -82,7 +82,7 @@ class IdeaPage extends React.Component {
     console.log(stripe, elements);
 
     const data = await new APIRequest(
-      "post",
+      'post',
       `idea/${ideaId}/support?amount=10`
     ).request();
 
@@ -92,7 +92,7 @@ class IdeaPage extends React.Component {
         payment_method: {
           card: elements.getElement(CardNumberElement),
           billing_details: {
-            name: localStorage.getItem("USER_ID"),
+            name: localStorage.getItem('USER_ID'),
           },
         },
       }
@@ -101,8 +101,8 @@ class IdeaPage extends React.Component {
     if (result.error) {
       console.log(result.error.message);
     } else {
-      if (result.paymentIntent.status === "succeeded") {
-        console.log("Payment Successed!");
+      if (result.paymentIntent.status === 'succeeded') {
+        console.log('Payment Successed!');
       }
     }
   };
@@ -254,7 +254,7 @@ class IdeaPage extends React.Component {
                                   options={{
                                     classes: {
                                       base:
-                                        "popup-content-right-form__input --mainfont",
+                                        'popup-content-right-form__input --mainfont',
                                     },
                                   }}
                                 />
@@ -265,7 +265,7 @@ class IdeaPage extends React.Component {
                                   options={{
                                     classes: {
                                       base:
-                                        "popup-content-right-form__input --mainfont",
+                                        'popup-content-right-form__input --mainfont',
                                     },
                                   }}
                                 />
@@ -276,7 +276,7 @@ class IdeaPage extends React.Component {
                                   options={{
                                     classes: {
                                       base:
-                                        "popup-content-right-form__input --mainfont",
+                                        'popup-content-right-form__input --mainfont',
                                     },
                                   }}
                                 />

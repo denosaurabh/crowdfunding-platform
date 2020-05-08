@@ -12,7 +12,7 @@ import ErrorHandler from './components/errorHandler/errorhandler.component';
 
 import LandingPage from './pages/landingpage/landingpage.component';
 import LoginPage from './pages/loginPage/loginpage.component';
-import ProjectsPage from './pages/projectsPage/projectspage.cmponent';
+import ProjectsPage from './pages/projectsPage/projectspage.container';
 import IdeaPage from './pages/ideaPage/ideapage.component';
 import UniversityPage from './pages/universitypage/universitypage.component';
 import UserUniversityContainerPage from './pages/userUniversityPage/useruniversity.container';

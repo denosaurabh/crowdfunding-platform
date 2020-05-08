@@ -3,11 +3,14 @@
     overflow-y: scroll;
 
     &__heading {
-      padding-bottom: 20px;
+      padding-bottom: 50px;
     }
 
     &-menu {
-      margin-bottom: 50px;
+      margin-bottom: 30px;
+      
+      margin-left: 17%;
+      margin-right: auto;
 
       &__text {
         font-size: 0.8rem;

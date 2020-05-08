@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import UserUniversityReducer from './UserUniversityReducer/university.reducer';
 import UserReducer from './userReducer/user.reducer';
+import CollectionReducer from './collectionReducer/collection.reducer';
 import errorReducer from './errorReducer/error.reducer';
 
 const persistConfig = {
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   university: UserUniversityReducer,
   user: UserReducer,
+  collection: CollectionReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

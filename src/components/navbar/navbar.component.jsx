@@ -11,6 +11,7 @@ import { ReactComponent as HomeSvg } from './../../assets/svg/home.svg';
 import { ReactComponent as ProposalsSvg } from './../../assets/svg/proposals.svg';
 import { ReactComponent as UniversitySvg } from './../../assets/svg/university.svg';
 import { ReactComponent as SettingsSvg } from './../../assets/svg/settings.svg';
+import { ReactComponent as LoginSvg } from './../../assets/svg/login.svg';
 
 class NavBar extends React.Component {
   constructor() {
@@ -51,7 +52,13 @@ class NavBar extends React.Component {
                 <SettingsSvg />
               </li>
             </Link>
-          ) : null}
+          ) : (
+            <Link to="/auth">
+              <li className="navbar-ul-li --most-bottom">
+                <LoginSvg />
+              </li>
+            </Link>
+          )}
         </ul>
       </div>
     );

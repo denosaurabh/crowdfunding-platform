@@ -1,181 +1,95 @@
-import React from "react";
+import React from 'react';
 
-import APIRequest from "../../utils/apirequest";
+import './projectspage.styles.scss';
 
-import "./projectspage.styles.scss";
+import { ReactComponent as SearchSvg } from '../../assets/svg/search.svg';
+import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
-import { ReactComponent as SearchSvg } from "../../assets/svg/search.svg";
-import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
+import NavBar from '../../components/navbar/navbar.component';
 
-import NavBar from "../../components/navbar/navbar.component";
+import InputField from '../../components/fieldInput/fieldinput.component';
+import FieldInput from '../../components/fieldInput/fieldinput.component';
 
-import InputField from "../../components/fieldInput/fieldinput.component";
-import FieldInput from "../../components/fieldInput/fieldinput.component";
-
-import IdeaCard from "../../components/ideabox/ideabox.component";
-import UniversityCard from "../../components/universityBox/universitybox.component";
+import IdeaCard from '../../components/ideabox/ideabox.component';
+import UniversityCard from '../../components/universityBox/universitybox.component';
 
 class ProjectsPage extends React.Component {
   constructor() {
     super();
 
-    this.state = { filter: "", filterField: [], searchtype: "idea", page: 1 };
+    this.state = { searchInputFieldValue: '' };
 
-    this.onIdeaFieldClickHandler = this.onIdeaFieldClickHandler.bind(this);
+    this.onSearchCategoryClickHandler = this.onSearchCategoryClickHandler.bind(
+      this
+    );
+    this.onInputFieldSearchClick = this.onInputFieldSearchClick.bind(this);
     this.filterChangeHandler = this.filterChangeHandler.bind(this);
-    this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
     this.onIdeasScroll = this.onIdeasScroll.bind(this);
-    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
-    this.getData(this.state.searchtype);
-  }
-
-  // get Data
-  async getData(type) {
-    this.setState({ data: null, filtredData: null });
-
     const {
-      data: {
-        data: { data },
-      },
-    } = await new APIRequest("get", `${type}?page=1&limit=20`, null).request();
+      fetchCollectionStartAsync,
+      category,
+      searchFieldValue,
+    } = this.props;
 
-    if (type === "idea") {
-      const userId = localStorage.getItem("USER_ID");
-
-      if (userId) {
-        data.forEach((el) => {
-          const isUpvoted = el.upvotesBy.includes(userId) ? true : false;
-
-          el.alreadyUpvoted = isUpvoted;
-        });
-      }
-    }
-
-    this.setState({ data, filtredData: data });
+    fetchCollectionStartAsync({
+      dataToFetch: 'idea',
+      category,
+      searchFieldValue,
+    });
   }
 
   // Browse Search Field Handler
   filterChangeHandler(e) {
     const { value } = e.target;
+    this.setState({ searchInputFieldValue: value });
+  }
 
-    this.setState({ filter: value });
+  onInputFieldSearchClick() {
+    const { setSearchInputFieldValue } = this.props;
 
-    if (value.length === 0) {
-      this.setState({ filtredData: null });
-    }
-
-    const title = this.state.searchtype === "idea" ? "title" : "name";
-
-    // Filtering Data in Fields
-    let filtredData = this.state.data.filter((el) => {
-      return this.state.filterField.includes(el.field);
-    });
-
-    filtredData = filtredData.filter((el) => {
-      return el[title].toLowerCase().includes(value.trim().toLowerCase());
-    });
-
-    this.setState({ filtredData });
+    setSearchInputFieldValue(this.state.searchInputFieldValue);
   }
 
   // Ideas Field Handler
-  onIdeaFieldClickHandler(e) {
-    let fields = this.state.filterField;
-
+  onSearchCategoryClickHandler(e) {
     const { name } = e.target.dataset;
+    e.target.classList.add('--active');
 
-    e.target.classList.toggle("--active");
-
-    // Updating State for Fields
-    if (this.state.filterField.includes(name)) {
-      let filterField = this.state.filterField;
-
-      filterField = filterField.filter((el) => el !== name);
-      fields = filterField;
-
-      this.setState({ filterField });
-    } else {
-      fields.push(name);
-
-      this.setState({ filterField: fields });
-    }
-
-    // Filtering Data in Fields
-    let filtredData = this.state.data.filter((el) => {
-      return fields.includes(el.field);
-    });
-
-    this.setState({ filtredData });
-
-    if (fields.length === 0) {
-      // displaying All Data
-      const { data } = this.state;
-      this.setState({ filtredData: data });
-      console.log(this.state);
-    }
-  }
-
-  // On Input Change Handler
-  onInputChangeHandler(e) {
-    const { name, value } = e.target;
-    console.log(value, "SEARCH TYPE");
-
-    this.setState({ [name]: value });
-
-    if (value === "idea") {
-      this.getData("idea");
-    } else if (value === "university") {
-      this.getData("university");
-    }
+    // Updating Redux State for Fields
+    const { setSearchCategory } = this.props;
+    setSearchCategory(name);
   }
 
   // Implementing Pagination
-  async onIdeasScroll(e) {
-    console.log(
-      e.target.scrollHeight,
-      e.target.scrollTop,
-      e.target.clientHeight,
-      e.target.scrollHeight - e.target.scrollTop
-    );
-
+  onIdeasScroll(e) {
     const bottom =
       parseInt(e.target.scrollHeight - e.target.scrollTop) ===
       e.target.clientHeight;
 
     if (bottom) {
-      console.log("At Bottom!");
+      const { fetchCollectionNextPage } = this.props;
 
-      const nextStatePage = this.state.page + 1;
+      // Calculating Next Page
+      /*
+      EX.
+      60 results (total results here)
+      20 results (fetched By Server every time)
+      +1 (Next Page)
+      =>
+      3rd page
+      
+      */
 
-      const {
-        data: {
-          data: { data },
-        },
-      } = await new APIRequest(
-        "get",
-        `idea?page=${nextStatePage}&limit=20`,
-        null
-      ).request();
-
-      if (data || data !== []) {
-        let stateData = this.state.data;
-        stateData.push(...data);
-
-        console.log(stateData);
-
-        this.setState({
-          data: stateData,
-          filteredData: stateData,
-          page: nextStatePage,
-        });
-      }
+      fetchCollectionNextPage();
     }
   }
 
   render() {
+    const { collectionData, category } = this.props;
+
     return (
       <div className="projects-page --grid-box-2">
         <NavBar />
@@ -184,13 +98,16 @@ class ProjectsPage extends React.Component {
           onScroll={this.onIdeasScroll}
         >
           <div className="projects-page-content-header">
-            <SearchSvg />
+            <h2 className="projects-page-content-header__heading --maintext">
+              Hello User! Today's All Ideas :D
+            </h2>
+            <SearchSvg onClick={this.onInputFieldSearchClick} />
             <InputField
               type="text"
               placeHolder={`browse ${
-                this.state.searchtype === "idea" ? "ideas" : "universities"
+                this.state.searchtype === 'idea' ? 'ideas' : 'universities'
               }`}
-              value={this.state.filter}
+              value={this.state.searchInputFieldValue}
               onChangeHandler={this.filterChangeHandler}
             />
           </div>
@@ -200,19 +117,13 @@ class ProjectsPage extends React.Component {
             </h4>
             <div className="projects-page-content-subheader-content">
               <ul className="projects-page-content-subheader-content-ul">
-                {[
-                  "medical",
-                  "Physics",
-                  "technology",
-                  "dance",
-                  "art",
-                  "music",
-                  "fashion",
-                ].map((el, i) => (
+                {['Popular', 'Most Funded', 'Recent'].map((el, i) => (
                   <li
-                    className="projects-page-content-subheader-content-ul__li --subpara"
+                    className={`projects-page-content-subheader-content-ul__li --subpara ${
+                      category === el ? '--active' : ''
+                    }`}
                     key={i}
-                    onClick={this.onIdeaFieldClickHandler}
+                    onClick={this.onSearchCategoryClickHandler}
                     data-name={el}
                   >
                     {el}
@@ -252,15 +163,9 @@ class ProjectsPage extends React.Component {
             </div>
           </div>
           <div className="projects-page-content-box">
-            {this.state.filtredData ? (
-              this.state.filtredData.map((el, i) => {
-                if (this.state.searchtype === "idea") {
-                  return <IdeaCard key={i} {...el} />;
-                } else if (this.state.searchtype === "university") {
-                  return <UniversityCard key={i} {...el} />;
-                } else {
-                  return null
-                }
+            {collectionData ? (
+              collectionData.map((el, i) => {
+                return <IdeaCard key={i} {...el} />;
               })
             ) : (
               <LoadingSvg />

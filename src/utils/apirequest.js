@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-import store from "../redux/store";
+import store from '../redux/store';
 
-import { setCurrentError } from "../redux/errorReducer/error.actions";
+import { setCurrentError } from '../redux/errorReducer/error.actions';
 
 class APIRequest {
   constructor(method, endpoint, data, token) {
@@ -13,7 +13,7 @@ class APIRequest {
   }
 
   request() {
-    this.token = localStorage.getItem("USER_TOKEN");
+    this.token = localStorage.getItem('USER_TOKEN');
 
     const resData = axios({
       method: this.method,
@@ -27,7 +27,9 @@ class APIRequest {
         console.log(res);
 
         // Dispatching the Error
-        store.dispatch(setCurrentError(res.data));
+        if (res.data.message) {
+          store.dispatch(setCurrentError(res.data));
+        }
 
         return res;
       })
