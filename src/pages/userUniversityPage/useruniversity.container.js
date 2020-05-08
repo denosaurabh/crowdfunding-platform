@@ -9,9 +9,13 @@ import {
   selectUserUniversityProposals,
   isUserUniversityFetching,
   isUserUniversityLoaded,
+  selectUniversitySortCategory
 } from '../../redux/UserUniversityReducer/university.selectors';
 
-import { getUniversityStartAsync } from '../../redux/UserUniversityReducer/university.action';
+import {
+  getUniversityStartAsync,
+  setUniversitySortCategory
+} from '../../redux/UserUniversityReducer/university.action';
 
 const mapStateToProps = createStructuredSelector({
   university: selectUserUniversity,
@@ -19,10 +23,13 @@ const mapStateToProps = createStructuredSelector({
   proposals: selectUserUniversityProposals,
   isLoading: isUserUniversityFetching,
   isDataLoaded: isUserUniversityLoaded,
+  category: selectUniversitySortCategory
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getUniversityStartAsync: () => dispatch(getUniversityStartAsync()),
+  setUniversitySortCategory: category =>
+    dispatch(setUniversitySortCategory(category))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserUniversityPage);

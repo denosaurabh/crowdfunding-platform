@@ -6,16 +6,20 @@
   &__heading {
     margin-bottom: 20px;
 
-    #invite-svg {
-      &:hover {
-        cursor: pointer;
+    .university-menu {
+      position: absolute;
+      top: 3%;
+      right: 0;
+
+      width: 40px;
+
+      #settings-svg {
+        transform: scale(0.9);
+
+        &:hover {
+          cursor: pointer;
+        }
       }
-    }
-  }
-  
-  svg {
-    &:hover {
-      cursor: pointer;
     }
   }
 }

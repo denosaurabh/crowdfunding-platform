@@ -69,7 +69,7 @@ export const fetchCollectionStartAsync = ({
       'get',
       `${dataToFetch}?page=1${
         searchFieldValue ? `&title[regex]=%5Cb${searchFieldValue}%5Cb&` : ''
-      }&limit=10${sortQuery}`
+      }&limit=100${sortQuery}`
     )
       .request()
       .then((res) => {
@@ -101,7 +101,7 @@ export const fetchCollectionNextPageAsync = ({
       'get',
       `${dataToFetch}?page=${page}${
         searchFieldValue ? `&title[regex]=%5Cb${searchFieldValue}%5Cb&` : ''
-      }&limit=10${sortQuery}`
+      }&limit=100${sortQuery}`
     )
       .request()
       .then((res) => {
@@ -132,7 +132,7 @@ export const fetchCollectionWithQueryAsync = ({
       'get',
       `${dataToFetch}?page=1${
         searchFieldValue ? `&title[regex]=%5Cb${searchFieldValue}%5Cb&` : ''
-      }limit=10${sortQuery}`
+      }limit=100${sortQuery}`
     )
       .request()
       .then((res) => {

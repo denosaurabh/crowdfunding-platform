@@ -1,0 +1,47 @@
+.university-menu {
+  &-invite-member {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  &-all-members {
+    &-box {
+      width: 100%;
+      height: 40px;
+
+      margin-top: 20px;
+
+      display: flex;
+      flex-direction: row;
+
+      &__img {
+        height: 38px;
+        width: 38px;
+
+        clip-path: circle(50% at 50% 50%);
+      }
+
+      &__name {
+        margin-top: 1%;
+        padding-left: 5%;
+        font-size: 0.7rem;
+
+        width: 100%;
+      }
+
+      #cut-light {
+        display: none;
+        
+        &:hover {
+            cursor: pointer;
+        }
+      }
+
+      &:hover {
+        #cut-light {
+          display: block;
+        }
+      }
+    }
+  }
+}

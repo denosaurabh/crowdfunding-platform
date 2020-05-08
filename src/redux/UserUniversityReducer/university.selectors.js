@@ -26,3 +26,13 @@ export const isUserUniversityLoaded = createSelector(
   [universitySelect],
   (university) => !!university
 );
+
+export const selectUniversitySortCategory = createSelector(
+  [universitySelect],
+  (university) => university.category
+);
+
+export const selectUniversitySettings = createSelector(
+  [universitySelect],
+  (university) => university.settings
+);

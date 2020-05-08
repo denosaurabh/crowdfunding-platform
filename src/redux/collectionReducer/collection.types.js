@@ -14,9 +14,7 @@ const CollectionActionsTypes = {
 
   // Search Collection Type
   SET_SEARCH_CATEGORY: 'SET_SEARCH_CATEGORY',
-  
-  // Collection BackupType 
-  MAKE_COLLECTION_BACKUP: 'MAKE_COLLECTION_BACKUP'
+
 };
 
 export default CollectionActionsTypes;

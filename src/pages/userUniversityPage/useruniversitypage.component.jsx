@@ -23,7 +23,14 @@ class UserUniversityPage extends React.Component {
   }
 
   render() {
-    const { university, members, proposals, isLoading } = this.props;
+    const {
+      university,
+      members,
+      proposals,
+      isLoading,
+      category,
+      setUniversitySortCategory
+    } = this.props;
 
     return (
       <div className="proposals-page --grid-box-3-wide">
@@ -33,12 +40,16 @@ class UserUniversityPage extends React.Component {
             Your University Proposals
           </h2>
           <div className="proposals-page-content-menu">
-            <span className="proposals-page-content-menu__text --subpara">
-              latest
-            </span>
-            <span className="proposals-page-content-menu__text --subpara">
-              intrested
-            </span>
+            {['latest', 'intrested'].map(el => (
+              <span
+                className={`proposals-page-content-menu__text --subpara ${
+                  el === category ? '--active-sort' : ''
+                }`}
+                onClick={() => setUniversitySortCategory(el)}
+              >
+                {el}
+              </span>
+            ))}
           </div>
           <UniversityProposalsPreview
             proposals={proposals}
@@ -50,6 +61,7 @@ class UserUniversityPage extends React.Component {
           members={members}
           universityId={university?._id}
           isLoading={isLoading}
+          adminId={university?.admin}
         />
       </div>
     );

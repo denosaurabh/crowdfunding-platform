@@ -11,6 +11,7 @@ import { ReactComponent as TickSvg } from '../../assets/svg/tick.svg';
 import { ReactComponent as CutSvg } from '../../assets/svg/cut.svg';
 
 import { setCurrentError } from '../../redux/errorReducer/error.actions';
+import { setProposalAcceptance } from '../../redux/UserUniversityReducer/university.action';
 
 class ProposalBox extends React.Component {
   onProposalAcceptClick = async () => {
@@ -24,6 +25,7 @@ class ProposalBox extends React.Component {
       }
     ).request();
 
+    this.props.setProposalAcceptance(this.props._id, 'accept');
     console.log(res);
   };
 
@@ -36,6 +38,7 @@ class ProposalBox extends React.Component {
       }
     ).request();
 
+    this.props.setProposalAcceptance(this.props._id, 'decline');
     console.log(res);
   };
 
@@ -87,9 +90,18 @@ class ProposalBox extends React.Component {
               This Proposal is not Accepted Yet!
             </p>
             <div className="proposal-accepted-buttons">
-              <span className="proposal-accepted-buttons__accept --maintext --smallfont">Accept</span>
-              <span className="proposal-accepted-buttons__decline --maintext --smallfont">Decline</span>
-
+              <span
+                className="proposal-accepted-buttons__accept --maintext --smallfont"
+                onClick={this.onProposalAcceptClick}
+              >
+                Accept
+              </span>
+              <span
+                className="proposal-accepted-buttons__decline --maintext --smallfont"
+                onClick={this.onProposalDeclineClick}
+              >
+                Decline
+              </span>
             </div>
           </div>
         ) : null}
@@ -100,6 +112,8 @@ class ProposalBox extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentError: (error) => dispatch(setCurrentError(error)),
+  setProposalAcceptance: (proposalId, func) =>
+    dispatch(setProposalAcceptance({ proposalId, func })),
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(ProposalBox));
