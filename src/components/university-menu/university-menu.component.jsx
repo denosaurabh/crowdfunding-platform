@@ -82,8 +82,8 @@ class UniversityMenu extends React.Component {
           </div>
           <div className="university-menu-all-members">
             <h5 className="--maintext">All Members</h5>
-            {university.members.map((member) => (
-              <div className="university-menu-all-members-box">
+            {university.members.map((member, id) => (
+              <div className="university-menu-all-members-box" key={id}>
                 <img
                   src={`${process.env.REACT_APP_API_URL}/images/users/${member.imageCover}`}
                   alt="user"

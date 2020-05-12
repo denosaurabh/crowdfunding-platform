@@ -74,6 +74,10 @@ class SettingsPage extends React.Component {
 
   // Get Account Info
   async onAccountClick() {
+    this.setState({
+      accountButtonTextValue: 'Hold on...',
+    });
+
     const res = await new APIRequest('get', 'user/account').request();
 
     this.setState({

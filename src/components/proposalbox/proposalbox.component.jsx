@@ -7,13 +7,17 @@ import APIRequest from '../../utils/apirequest';
 import './proposalbox.styles.scss';
 
 import { ReactComponent as UpvoteBorderBlueSvg } from '../../assets/svg/upvote-border-blue.svg';
-import { ReactComponent as TickSvg } from '../../assets/svg/tick.svg';
+import { ReactComponent as ProposalMenu } from '../../assets/svg/proposal-menu.svg';
 import { ReactComponent as CutSvg } from '../../assets/svg/cut.svg';
 
 import { setCurrentError } from '../../redux/errorReducer/error.actions';
 import { setProposalAcceptance } from '../../redux/UserUniversityReducer/university.action';
 
+import Button from '../button/button.component';
+
 class ProposalBox extends React.Component {
+  state = { showArchivePopup: true };
+
   onProposalAcceptClick = async () => {
     console.log(this.props.universityId);
 
@@ -45,13 +49,58 @@ class ProposalBox extends React.Component {
   render() {
     return (
       <>
+        <ProposalMenu
+          onClick={() => this.setState({ showMenu: !this.state.showMenu })}
+        />
+        {this.state.showMenu ? (
+          <div className="proposal-menu-content">
+            <ul className="proposal-menu-content-ul">
+              <li className="proposal-menu-content-ul__li --maintext --smallfont">
+                Send Email
+              </li>
+              <li
+                className="proposal-menu-content-ul__li --maintext --smallfont"
+                onClick={() =>
+                  this.setState({
+                    showArchivePopup: !this.state.showArchivePopup,
+                    showMenu: false,
+                  })
+                }
+              >
+                Archive
+              </li>
+            </ul>
+          </div>
+        ) : null}
+
+        {this.state.showArchivePopup ? (
+          <div className="archive-popup">
+            <div className="archive-popup-content">
+              <CutSvg
+                onClick={() => this.setState({ showArchivePopup: false })}
+              />
+              <h4 className="--maintext"> Send Email to User </h4>
+              <textarea
+                type="text"
+                className="archive-popup-content__textarea --maintext"
+                placeholder="i.e. Hello we are from SMT University, we see your proposal and want to help more with like minded peoples."
+              />
+              <Button content="Send Email" colorStyle="blue" size="wide" />
+            </div>
+          </div>
+        ) : null}
+
         <div
           className="proposal-box"
           onClick={() =>
             this.props.history.push(`/myuniversity/proposal/${this.props._id}`)
           }
         >
-          <h4 className="proposal-box__title --maintext">{this.props.title}</h4>
+          <div className="proposal-box-header">
+            <h4 className="proposal-box-header__title --maintext">
+              {this.props.title}
+            </h4>
+          </div>
           <p className="proposal-box__description --subpara">
             {this.props.description.length > 300
               ? `${this.props.description.slice(0, 300)} ....`

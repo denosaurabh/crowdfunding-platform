@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: undefined,
   category: undefined,
-  settings: true,
+  settings: false,
 };
 
 const universityReducer = (state = INITIAL_STATE, action) => {

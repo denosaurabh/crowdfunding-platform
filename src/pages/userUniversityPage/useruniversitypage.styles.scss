@@ -9,8 +9,10 @@
     &-menu {
       margin-bottom: 30px;
 
-      margin-left: 17%;
+      margin-left: 10%;
       margin-right: auto;
+      
+      width: 70%;
 
       &__text {
         font-size: 0.8rem;
@@ -19,6 +21,10 @@
 
         &:hover {
           cursor: pointer;
+        }
+        
+        &:last-child {
+          float: right;
         }
       }
     }

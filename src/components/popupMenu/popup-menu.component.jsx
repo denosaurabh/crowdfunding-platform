@@ -15,8 +15,11 @@ const PopupMenu = ({
   width,
   height,
   toggleUniversitySettings,
+  showArchive,
 }) => {
-  if (show) {
+  console.log(show, showArchive);
+
+  if (show || showArchive) {
     return (
       <div className="popup-menu">
         <div className="popup-menu-content" style={{ width, height }}>
