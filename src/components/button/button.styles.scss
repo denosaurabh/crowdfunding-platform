@@ -4,10 +4,10 @@
 
   margin: 15px;
   padding: 0 15px 0 15px;
-  
+
   border-radius: 12px;
 
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 0.8rem;
@@ -76,4 +76,10 @@
 
 .--wide {
   width: 30%;
+}
+
+.--simple-blue {
+  background: rgba(108, 99, 255, 0.74);
+  border-radius: 5px;
+  box-shadow: 6px 8px 16px rgba(108, 99, 255, 0.47);
 }

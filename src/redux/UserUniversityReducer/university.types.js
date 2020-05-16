@@ -7,6 +7,8 @@ const universityActionTypes = {
   // University Settings
   TOGGLE_UNIVERSITY_SETTINGS: 'TOGGLE_UNIVERSITY_SETTINGS',
   REMOVE_UNIVERSITY_MEMBER: 'REMOVE_UNIVERSITY_MEMBER',
+  
+  ARCHIVE_PROPOSAL: 'ARCHIVE_PROPOSAL'
 };
 
 export default universityActionTypes;

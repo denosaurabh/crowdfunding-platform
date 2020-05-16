@@ -11,12 +11,15 @@ import { ReactComponent as ProposalMenu } from '../../assets/svg/proposal-menu.s
 import { ReactComponent as CutSvg } from '../../assets/svg/cut.svg';
 
 import { setCurrentError } from '../../redux/errorReducer/error.actions';
-import { setProposalAcceptance } from '../../redux/UserUniversityReducer/university.action';
+import {
+  archiveProposal,
+  setProposalAcceptance,
+} from '../../redux/UserUniversityReducer/university.action';
 
 import Button from '../button/button.component';
 
 class ProposalBox extends React.Component {
-  state = { showArchivePopup: true };
+  state = {};
 
   onProposalAcceptClick = async () => {
     console.log(this.props.universityId);
@@ -46,6 +49,29 @@ class ProposalBox extends React.Component {
     console.log(res);
   };
 
+  archiveProposal = async () => {
+    const res = await new APIRequest(
+      'post',
+      `proposal/${this.props._id}/archive`,
+      {
+        universityId: this.props.universityId,
+      }
+    ).request();
+
+    this.props.archiveProposal(this.props._id);
+    console.log(res);
+
+    this.setState({ showMenu: false });
+  };
+
+  sendEmailToUserClickHandler = async () => {
+    await new APIRequest('post', `proposal/${this.props._id}/sendEmail`, {
+      message: this.state.proposalUserEmailMessage,
+    }).request();
+
+    this.setState({ showMenu: false, showArchivePopup: false });
+  };
+
   render() {
     return (
       <>
@@ -55,9 +81,6 @@ class ProposalBox extends React.Component {
         {this.state.showMenu ? (
           <div className="proposal-menu-content">
             <ul className="proposal-menu-content-ul">
-              <li className="proposal-menu-content-ul__li --maintext --smallfont">
-                Send Email
-              </li>
               <li
                 className="proposal-menu-content-ul__li --maintext --smallfont"
                 onClick={() =>
@@ -66,6 +89,12 @@ class ProposalBox extends React.Component {
                     showMenu: false,
                   })
                 }
+              >
+                Send Email
+              </li>
+              <li
+                className="proposal-menu-content-ul__li --maintext --smallfont"
+                onClick={this.archiveProposal}
               >
                 Archive
               </li>
@@ -84,8 +113,17 @@ class ProposalBox extends React.Component {
                 type="text"
                 className="archive-popup-content__textarea --maintext"
                 placeholder="i.e. Hello we are from SMT University, we see your proposal and want to help more with like minded peoples."
+                value={this.state.proposalUserEmailMessage}
+                onChange={(e) =>
+                  this.setState({ proposalUserEmailMessage: e.target.value })
+                }
               />
-              <Button content="Send Email" colorStyle="blue" size="wide" />
+              <Button
+                content="Send Email"
+                colorStyle="blue"
+                size="wide"
+                onClickHandler={this.sendEmailToUserClickHandler}
+              />
             </div>
           </div>
         ) : null}
@@ -163,6 +201,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentError: (error) => dispatch(setCurrentError(error)),
   setProposalAcceptance: (proposalId, func) =>
     dispatch(setProposalAcceptance({ proposalId, func })),
+  archiveProposal: (proposalId) => dispatch(archiveProposal(proposalId)),
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(ProposalBox));

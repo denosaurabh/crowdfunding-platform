@@ -1,5 +1,11 @@
-export const sortUniversityProposals = (university, sortCategory) => {
-  let { proposals: allProposals } = university;
+import APIRequest from '../../utils/apirequest';
+
+export const sortUniversityProposals = (
+  university,
+  allProposals,
+  sortCategory
+) => {
+  // let { allProposals } = university;
 
   if (sortCategory === 'latest') {
     allProposals = allProposals.sort(
@@ -62,4 +68,14 @@ export const removeUniversityMemberUtil = (university, memberId) => {
   delete members[deleteMemberIndex];
 
   return { ...university, members };
+};
+
+export const archiveProposal = (university, proposalId) => {
+  let { proposals } = university;
+
+  const proposalIndex = proposals.findIndex((el) => el._id === proposalId);
+
+  delete proposals[proposalIndex];
+
+  return { ...university, proposals };
 };

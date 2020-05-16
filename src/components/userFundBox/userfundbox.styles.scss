@@ -1,0 +1,53 @@
+.user-fund-box {
+  width: 80%;
+  height: fit-content;
+
+  display: flex;
+
+  margin: 4% 2%;
+  padding: 1%;
+
+  background-color: white;
+  box-shadow: 0px 0px 62px rgba(201, 201, 201, 0.25);
+  border-radius: 8px;
+
+  &__img {
+    margin-top: 10px;  
+    
+    height: 50px;
+    width: auto;
+
+    margin-right: 20px;
+
+    clip-path: circle(40% at 50% 50%);
+    border: 2px solid white;
+  }
+
+  &__name {
+    margin-top: 20px;  
+    
+    padding-right: 2%;
+
+    font-size: 0.9rem;
+  }
+
+  &__work {
+    margin-top: 24px;  
+    
+    width: 70%;
+
+    font-size: 0.7rem;
+    color: grey;
+  }
+
+  &__fundamount {
+    margin-top: 20px;  
+    
+    font-size: 1rem;
+  }
+
+  &__thanksButton {
+    position: relative;
+    left: 100px;
+  }
+}

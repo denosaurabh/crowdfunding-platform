@@ -7,10 +7,11 @@ const Button = ({
   size,
   content,
   addClass,
-  onClickHandler
+  onClickHandler,
+  display
 }) => (
   <button
-    className={`button --${colorStyle} --${size} ${addClass}`}
+    className={`button --${colorStyle} --${size} ${addClass} --${display}`}
     onClick={onClickHandler}
   >
     {content}

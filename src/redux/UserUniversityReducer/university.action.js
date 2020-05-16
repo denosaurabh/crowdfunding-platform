@@ -35,6 +35,11 @@ export const removeUniversityMember = (memberId) => ({
   payload: memberId,
 });
 
+export const archiveProposal = (proposalId) => ({
+  type: universityActionTypes.ARCHIVE_PROPOSAL,
+  payload: proposalId,
+});
+
 // Getting Proposals & Members from University
 export const getUniversityStartAsync = () => {
   return (dispatch) => {

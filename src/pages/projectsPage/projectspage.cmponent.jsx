@@ -98,9 +98,6 @@ class ProjectsPage extends React.Component {
           onScroll={this.onIdeasScroll}
         >
           <div className="projects-page-content-header">
-            <h2 className="projects-page-content-header__heading --maintext">
-              Hello User! Today's All Ideas :D
-            </h2>
             <SearchSvg onClick={this.onInputFieldSearchClick} />
             <InputField
               type="text"

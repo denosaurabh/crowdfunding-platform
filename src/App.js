@@ -23,6 +23,8 @@ import IdeaFormPage from './pages/Ideaformpage/Ideaformpage.component';
 import SettingsPage from './pages/settingspage/settingspage.component';
 import BusinessAccountPage from './pages/businessAccountPage/businessaccountpage.component';
 import AccountVerify from './pages/accountVerify/accountverify.component';
+import UserIdeasPage from './pages/userIdeasPage/userIdeasPage.component.jsx';
+import UserIdeaStats from './pages/userIdeaStats/userIdeaStats.component';
 
 class App extends React.Component {
   constructor() {
@@ -58,6 +60,10 @@ class App extends React.Component {
               }
             />
             <Route exact path="/home" component={ProjectsPage} />
+
+            <Route exact path="/yourIdeas/:ideaId" component={UserIdeaStats} />
+            <Route exact path="/yourIdeas" component={UserIdeasPage} />
+
             <Route exact path="/idea/:id" component={IdeaPage} />
             <Route exact path="/university/:id" component={UniversityPage} />
             <Route

@@ -11,7 +11,7 @@
 
       margin-left: 10%;
       margin-right: auto;
-      
+
       width: 70%;
 
       &__text {
@@ -21,10 +21,6 @@
 
         &:hover {
           cursor: pointer;
-        }
-        
-        &:last-child {
-          float: right;
         }
       }
     }

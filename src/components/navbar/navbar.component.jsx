@@ -36,7 +36,9 @@ class NavBar extends React.Component {
             </li>
           </Link>
           <li className="navbar-ul-li">
-            <ProposalsSvg />
+            <Link to="/yourIdeas">
+              <ProposalsSvg />
+            </Link>
           </li>
           {currentUser?.university ? (
             <Link to="/myuniversity">
