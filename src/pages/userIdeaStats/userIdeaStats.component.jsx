@@ -20,6 +20,10 @@ class UserIdeaStats extends React.Component {
     new APIRequest('get', `user/myIdeas/${ideaId}`)
       .request()
       .then((res) => this.setState({ idea: res.data.data }));
+
+    new APIRequest('get', `fund/${ideaId}`)
+      .request()
+      .then((res) => this.setState({ ideaFunds: res.data.data }));
   }
 
   render() {
@@ -40,6 +44,9 @@ class UserIdeaStats extends React.Component {
                   content="See Idea"
                   addClass="user-idea-stats-content-header__button"
                   display="simple-blue"
+                  onClickHandler={() =>
+                    this.props.history.push(`/idea/${this.state.idea._id}`)
+                  }
                 />
               </div>
               <p className="user-idea-stats-content__description --subpara --smallfont">
@@ -72,13 +79,13 @@ class UserIdeaStats extends React.Component {
                 <h4 className="user-idea-stats-content-recentfund__heading --maintext">
                   Recent Funds
                 </h4>
-                <UserFundBox />
-                <UserFundBox />
-                <UserFundBox />
-                <UserFundBox />
-                <UserFundBox />
-                <UserFundBox />
-                <UserFundBox />
+                {this.state.ideaFunds ? (
+                  this.state.ideaFunds.map((el, i, map) => (
+                    <UserFundBox key={i} {...el} />
+                  ))
+                ) : (
+                  <LoadingSvg />
+                )}
               </div>
             </>
           ) : (

@@ -8,16 +8,16 @@ import Button from '../button/button.component';
     This is a Component for the Box of the Fund in the User Published Idea ( Recent Funds )
 */
 
-const UserFundBox = () => (
+const UserFundBox = ({ name, email, job, img, amount }) => (
   <div className="user-fund-box">
     <img
-      src="/assets/img/person.png"
+      src={`${process.env.REACT_APP_API_URL}/images/users/${img}`}
       alt="user"
       className="user-fund-box__img"
     />
-    <h5 className="user-fund-box__name --maintext">Charles</h5>
-    <span className="user-fund-box__work --subpara">Engineer</span>
-    <p className="user-fund-box__fundamount --subpara">$30</p>
+    <h5 className="user-fund-box__name --maintext">{name}</h5>
+    <span className="user-fund-box__work --subpara">{job}</span>
+    <p className="user-fund-box__fundamount --subpara">${amount}</p>
 
     <Button
       content="Send Thanks"
