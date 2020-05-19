@@ -1,5 +1,4 @@
 import CollectionActionTypes from './collection.types';
-import { addCategoryToArray } from './collection.utils';
 
 const INITIAL_STATE = {
   collectionTempBackup: null,
@@ -9,6 +8,7 @@ const INITIAL_STATE = {
   page: 1,
   searchField: '',
   category: 'Popular',
+  searchUniversityOrIdeas: 'idea',
 };
 
 const CollectionReducer = (state = INITIAL_STATE, action) => {
@@ -32,7 +32,7 @@ const CollectionReducer = (state = INITIAL_STATE, action) => {
     // Pages Action Handlers
     case CollectionActionTypes.COLLECTION_NEXT_PAGE:
       return { ...state, page: action.payload };
-      
+
     case CollectionActionTypes.FETCH_COLLECTION_NEXT_PAGE_SUCCESS:
       return {
         ...state,
@@ -55,6 +55,12 @@ const CollectionReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         collectionTempBackup: state.collectionData,
+      };
+
+    case CollectionActionTypes.SET_UNIVERSITY_OR_IDEAS_SEARCH:
+      return {
+        ...state,
+        searchUniversityOrIdeas: action.payload,
       };
 
     default:

@@ -14,6 +14,8 @@ const CollectionActionsTypes = {
 
   // Search Collection Type
   SET_SEARCH_CATEGORY: 'SET_SEARCH_CATEGORY',
+  
+  SET_UNIVERSITY_OR_IDEAS_SEARCH: 'SET_UNIVERSITY_OR_IDEAS_SEARCH'
 
 };
 

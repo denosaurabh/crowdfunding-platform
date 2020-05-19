@@ -3,6 +3,7 @@ const userActionsTypes = {
   GET_USER_SUCCESS: 'GET_USER_SUCCESS',
   GET_USER_FAILED: 'GET_USER_FAILED',
   SET_USER_NULL: 'SET_USER_NULL',
+  SET_CURRENT_USER: 'SET_CURRENT_USER' 
 };
 
 export default userActionsTypes;

@@ -1,17 +1,17 @@
 import CollectionActionTypes from './collection.types';
 
-import { addCategoryToArray as futureCategoryState } from './collection.utils';
-
 import {
   fetchCollectionWithQueryAsync,
   fetchCollectionNextPageAsync,
+  fetchCollectionStartAsync
 } from './collection.actions';
 
 import CollectionActionsTypes from './collection.types';
+import { act } from 'react-dom/test-utils';
 
 const collectionMiddleware = (state) => (next) => (action) => {
   const { collection } = state.getState();
-  const { category, searchField, page } = collection;
+  const { category, searchField, page, searchUniversityOrIdeas } = collection;
 
   switch (action.type) {
     case CollectionActionTypes.FETCH_COLLECTION_NEXT_PAGE:
@@ -24,7 +24,7 @@ const collectionMiddleware = (state) => (next) => (action) => {
       // Adding data to Collection, in respect to SearchField and Categories
       state.dispatch(
         fetchCollectionNextPageAsync({
-          dataToFetch: 'idea',
+          dataToFetch: searchUniversityOrIdeas,
           category,
           searchFieldValue: searchField,
           page,
@@ -42,7 +42,7 @@ const collectionMiddleware = (state) => (next) => (action) => {
 
       state.dispatch(
         fetchCollectionWithQueryAsync({
-          dataToFetch: 'idea',
+          dataToFetch: searchUniversityOrIdeas,
           category,
           searchFieldValue: action.payload,
           page,
@@ -60,8 +60,26 @@ const collectionMiddleware = (state) => (next) => (action) => {
 
       state.dispatch(
         fetchCollectionWithQueryAsync({
-          dataToFetch: 'idea',
+          dataToFetch: searchUniversityOrIdeas,
           category: action.payload,
+          searchFieldValue: searchField,
+          page,
+        })
+      );
+
+      return next(action);
+
+    case CollectionActionTypes.SET_UNIVERSITY_OR_IDEAS_SEARCH:
+      console.log(
+        '%c I AM IN __SET_SEARCH_IDEA_OR_UNIVERSITY__',
+        'background-color: pink; color: white',
+        action.payload
+      );
+
+      state.dispatch(
+        fetchCollectionStartAsync({
+          dataToFetch: action.payload,
+          category,
           searchFieldValue: searchField,
           page,
         })

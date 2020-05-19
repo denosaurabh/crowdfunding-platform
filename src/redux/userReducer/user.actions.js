@@ -20,6 +20,25 @@ export const setCurrentUserNull = () => ({
   type: UserActionTypes.SET_USER_NULL,
 });
 
+export const setCurrentUser = (user) => ({
+  type: UserActionTypes.SET_CURRENT_USER,
+  payload: user,
+});
+
+export const setCurrentUserMeAsync = () => {
+  return (dispatch) => {
+    new APIRequest('get', 'user/me')
+      .request()
+      .then((res) => {
+        setCurrentUser(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(setCurrentUserFailed(err));
+      });
+  };
+};
+
 export const setCurrentUserStartAsync = (userData, type, reqType = 'post') => {
   return (dispatch) => {
     dispatch(setCurrentUserStart());

@@ -25,6 +25,7 @@ class ProjectsPage extends React.Component {
     this.onInputFieldSearchClick = this.onInputFieldSearchClick.bind(this);
     this.filterChangeHandler = this.filterChangeHandler.bind(this);
     this.onIdeasScroll = this.onIdeasScroll.bind(this);
+    this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -87,8 +88,15 @@ class ProjectsPage extends React.Component {
     }
   }
 
+  onInputChangeHandler(e) {
+    const { setSearchIdeaOrUniversity } = this.props;
+    this.setState({ searchInputFieldValue: '' });
+
+    setSearchIdeaOrUniversity(e.target.value);
+  }
+
   render() {
-    const { collectionData, category } = this.props;
+    const { collectionData, category, searchIdeaOrCollection } = this.props;
 
     return (
       <div className="projects-page --grid-box-2">
@@ -132,7 +140,7 @@ class ProjectsPage extends React.Component {
               <span className="--maintext --smallfont">Filter</span>
               <div className="projects-page-content-subheader-dropdown-content">
                 <div className="--maintext">
-                  <form action="">
+                  <form>
                     <label className="container --smallfont">
                       Ideas
                       <FieldInput
@@ -162,7 +170,13 @@ class ProjectsPage extends React.Component {
           <div className="projects-page-content-box">
             {collectionData ? (
               collectionData.map((el, i) => {
-                return <IdeaCard key={i} {...el} />;
+                if (searchIdeaOrCollection === 'idea') {
+                  return <IdeaCard key={i} {...el} />;
+                } else if (searchIdeaOrCollection === 'university') {
+                  return <UniversityCard key={i} {...el} />;
+                } else {
+                  return null;
+                }
               })
             ) : (
               <LoadingSvg />

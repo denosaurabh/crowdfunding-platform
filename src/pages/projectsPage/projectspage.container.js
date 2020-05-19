@@ -5,10 +5,10 @@ import ProjectsPage from './projectspage.cmponent';
 
 import {
   fetchCollectionStartAsync,
-  fetchCollectionNextPage,
   fetchCollectionNextPageStart,
   setSearchInputField,
   setSearchCategory,
+  searchIdeaOrCollection,
 } from '../../redux/collectionReducer/collection.actions';
 
 import {
@@ -16,6 +16,7 @@ import {
   selectCollectionNextPage,
   selectSearchInputValue,
   selectCollectionCategory,
+  selectSearchIdeaOrUniversity,
 } from '../../redux/collectionReducer/collection.selectors';
 
 const mapStateToProps = createStructuredSelector({
@@ -23,6 +24,7 @@ const mapStateToProps = createStructuredSelector({
   nextPageNo: selectCollectionNextPage,
   searchInputFieldValue: selectSearchInputValue,
   category: selectCollectionCategory,
+  searchIdeaOrCollection: selectSearchIdeaOrUniversity,
 });
 
 const mapDipatchToProps = (dispatch) => ({
@@ -33,6 +35,8 @@ const mapDipatchToProps = (dispatch) => ({
   fetchCollectionNextPage: () => dispatch(fetchCollectionNextPageStart()),
   setSearchInputFieldValue: (value) => dispatch(setSearchInputField(value)),
   setSearchCategory: (category) => dispatch(setSearchCategory(category)),
+  setSearchIdeaOrUniversity: (search) =>
+    dispatch(searchIdeaOrCollection(search)),
 });
 
 export default connect(mapStateToProps, mapDipatchToProps)(ProjectsPage);

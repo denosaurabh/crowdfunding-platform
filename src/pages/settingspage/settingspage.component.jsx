@@ -169,7 +169,8 @@ class SettingsPage extends React.Component {
                   {currentUser.job} in {currentUser.country}
                 </p>
                 <span className="settings-page-content-bottom-box__joinedon --subpara --smallfont --light">
-                  Joined On: {currentUser.joinedOn}
+                  Joined On:{' '}
+                  {new Date(currentUser.joinedOn).toLocaleDateString()}
                 </span>
                 {currentUser.accountVerified ? (
                   <a
@@ -181,7 +182,14 @@ class SettingsPage extends React.Component {
                   >
                     {this.state.accountButtonTextValue}
                   </a>
-                ) : null}
+                ) : (
+                  <a
+                    className="settings-page-content-bottom-box__account_button --maintext"
+                    onClick={() => this.props.history.push('/account/business')}
+                  >
+                    Make Business Account
+                  </a>
+                )}
                 {this.state.accountLink ? (
                   <span className="settings-page-content-bottom-box__account_span --subpara">
                     This is for Security purpose*

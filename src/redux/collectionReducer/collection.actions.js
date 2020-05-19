@@ -53,6 +53,12 @@ export const makeCollectionBackup = () => ({
   type: CollectionActionTypes.MAKE_COLLECTION_BACKUP,
 });
 
+// Make University or Idea Search
+export const searchIdeaOrCollection = (search) => ({
+  type: CollectionActionTypes.SET_UNIVERSITY_OR_IDEAS_SEARCH,
+  payload: search,
+});
+
 /* --------*---------*------- */
 //  Fetching Data at Initial
 export const fetchCollectionStartAsync = ({
@@ -79,7 +85,7 @@ export const fetchCollectionStartAsync = ({
         );
         dispatch(collectionNextPage(Math.ceil(res.data.results / 10) + 1));
 
-        dispatch(fetchCollectionSuccess(res.data.data.data));
+        dispatch(fetchCollectionSuccess(res.data.data));
       })
       .catch((err) => dispatch(fetchCollectionFailed(err)));
   };
@@ -112,7 +118,7 @@ export const fetchCollectionNextPageAsync = ({
 
         dispatch(collectionNextPage(Math.ceil(res.data.results / 10) + page));
 
-        dispatch(fetchCollectionNextPage(res.data.data.data));
+        dispatch(fetchCollectionNextPage(res.data.data));
       })
       .catch((err) => dispatch(fetchCollectionFailed(err)));
   };
@@ -138,77 +144,8 @@ export const fetchCollectionWithQueryAsync = ({
       .then((res) => {
         dispatch(collectionNextPage(2));
 
-        dispatch(fetchCollectionSuccess(res.data.data.data));
+        dispatch(fetchCollectionSuccess(res.data.data));
       })
       .catch((err) => dispatch(fetchCollectionFailed(err)));
   };
 };
-
-// Clearing and Fetching Data with Categories
-// export const clearAndFetchCollectionWithCategories = ({
-//   dataToFetch,
-//   categories,
-//   searchInputFieldValue,
-//   page,
-// }) => {
-//   return (dispatch) => {
-//     dispatch(fetchCollectionStart());
-
-//     const categoriesQueryStr = makeCategoriesQueryStr(categories);
-
-//     //  title[regex]=\b${searchInputFieldValue}\b&page=1&limit=10&${categoriesQueryStr}
-//     new APIRequest(
-//       'get',
-//       `${dataToFetch}?page=1&limit=10${
-//         searchInputFieldValue
-//           ? `&title[regex]=%5Cb${searchInputFieldValue}%5Cb&`
-//           : '&'
-//       }${categoriesQueryStr}`
-//     )
-//       .request()
-//       .then((res) => {
-//         dispatch(fetchCollectionSuccess(res.data.data.data));
-//       })
-//       .catch((err) => dispatch(fetchCollectionFailed(err)));
-//   };
-// };
-
-// // Filtering the Current Collection respect to Categories
-// export const fetchCollectionWithcategories = ({
-//   dataToFetch,
-//   searchInputFieldValue,
-//   categories,
-//   page,
-// }) => {
-//   return (dispatch) => {
-//     const categoriesQueryStr = makeCategoriesQueryStr(categories);
-
-//     new APIRequest(
-//       'get',
-//       `${dataToFetch}?page=1&limit=10${
-//         searchInputFieldValue
-//           ? `&title[regex]=%5Cb${searchInputFieldValue}%5Cb&`
-//           : '&'
-//       }${categoriesQueryStr}`
-//     )
-//       .request()
-//       .then((res) => {
-//         dispatch(fetchCollectionSuccess(res.data.data.data));
-//       })
-//       .catch((err) => dispatch(fetchCollectionFailed(err)));
-
-//     // console.log(
-//     //   collectionData,
-//     //   categories,
-//     //   'FILTER CURRENT COLLECTION WITH CATEGORIES'
-//     // );
-
-//     // return (dispatch) => {
-//     //   const filteredCollectionData = collectionData.filter((el) =>
-//     //     categories.includes(el.field)
-//     //   );
-
-//     //   dispatch(fetchCollectionSuccess(filteredCollectionData));
-//     // };
-//   };
-// };

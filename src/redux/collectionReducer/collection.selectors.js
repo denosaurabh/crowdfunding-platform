@@ -20,3 +20,8 @@ export const selectCollectionCategory = createSelector(
   [collectionSelect],
   (collection) => collection.category
 );
+
+export const selectSearchIdeaOrUniversity = createSelector(
+  [collectionSelect],
+  (collection) => collection.searchUniversityOrIdeas
+);
