@@ -22,9 +22,12 @@ const UserFundBox = ({ name, email, job, img, amount, thanked, _id }) => {
   const onThanksClickHandler = () => {
     console.log('Clicked');
 
-    new APIRequest('post', `fund/${_id}/thanks`).request().then((res) => {
-      setFundThanks(true);
-    });
+    new APIRequest('post', `fund/${_id}/thanks`)
+      .request()
+      .then((res) => {
+        setFundThanks(true);
+      })
+      .catch((err) => {});
   };
 
   return (
@@ -42,9 +45,10 @@ const UserFundBox = ({ name, email, job, img, amount, thanked, _id }) => {
         <Button
           content="Send Thanks"
           display="simple-blue"
-          addClass="user-fund-box__thanksButton"
           onClickHandler={onThanksClickHandler}
-          addClass={fundThanks ? '--thanked' : ''}
+          addClass={`user-fund-box__thanksButton ${
+            fundThanks ? '--thanked' : ''
+          }`}
           size="wide"
         />
       ) : (

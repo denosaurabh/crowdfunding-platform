@@ -21,6 +21,7 @@ const CollectionReducer = (state = INITIAL_STATE, action) => {
         page: 1,
         category: 'Popular',
         searchField: '',
+        searchUniversityOrIdeas: 'idea',
       };
 
     case CollectionActionTypes.FETCH_COLLECTIONS_SUCCESS:

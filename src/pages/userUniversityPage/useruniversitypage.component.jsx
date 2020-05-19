@@ -40,12 +40,13 @@ class UserUniversityPage extends React.Component {
             Your University Proposals
           </h2>
           <div className="proposals-page-content-menu">
-            {['latest', 'intrested'].map((el) => (
+            {['latest', 'intrested'].map((el, i) => (
               <span
                 className={`proposals-page-content-menu__text --subpara ${
                   el === category ? '--active-sort' : ''
                 }`}
                 onClick={() => setUniversitySortCategory(el)}
+                key={i}
               >
                 {el}
               </span>

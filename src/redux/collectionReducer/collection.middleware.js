@@ -7,7 +7,6 @@ import {
 } from './collection.actions';
 
 import CollectionActionsTypes from './collection.types';
-import { act } from 'react-dom/test-utils';
 
 const collectionMiddleware = (state) => (next) => (action) => {
   const { collection } = state.getState();

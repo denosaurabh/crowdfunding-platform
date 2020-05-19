@@ -42,12 +42,14 @@ class IdeaPage extends React.Component {
     axios({
       method: 'get',
       url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}`,
-    }).then((res) => {
-      console.log(res);
+    })
+      .then((res) => {
+        console.log(res);
 
-      const data = res.data.data.data;
-      this.setState({ idea: data, fundIdeaAmount: data.fundTiers[0] });
-    });
+        const data = res.data.data.data;
+        this.setState({ idea: data, fundIdeaAmount: data.fundTiers[0] });
+      })
+      .catch((err) => {});
   }
 
   onUpvoteClick() {
@@ -61,17 +63,19 @@ class IdeaPage extends React.Component {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => {
-      console.log(res);
+    })
+      .then((res) => {
+        console.log(res);
 
-      if (res.data.result === 'Upvoted') {
-        this.setState((prevState) => {
-          return {
-            idea: { upvotes: prevState.idea.upvotes + 1, ...prevState.idea },
-          };
-        });
-      }
-    });
+        if (res.data.result === 'Upvoted') {
+          this.setState((prevState) => {
+            return {
+              idea: { upvotes: prevState.idea.upvotes + 1, ...prevState.idea },
+            };
+          });
+        }
+      })
+      .catch((err) => {});
   }
 
   // Stripe Payment

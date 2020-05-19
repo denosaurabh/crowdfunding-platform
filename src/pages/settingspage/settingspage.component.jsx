@@ -14,7 +14,6 @@ import {
 
 import { ReactComponent as EditSvg } from '../../assets/svg/edit.svg';
 import { ReactComponent as LogoutSvg } from '../../assets/svg/exit.svg';
-import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
 import Navbar from '../../components/navbar/navbar.component';
 import InputField from '../../components/fieldInput/fieldinput.component';
@@ -78,12 +77,17 @@ class SettingsPage extends React.Component {
       accountButtonTextValue: 'Hold on...',
     });
 
-    const res = await new APIRequest('get', 'user/account').request();
-
-    this.setState({
-      accountLink: res.data.data.link,
-      accountButtonTextValue: 'Go to link to see account',
-    });
+    new APIRequest('get', 'user/account')
+      .request()
+      .then((res) => {
+        this.setState({
+          accountLink: res.data.data.link,
+          accountButtonTextValue: 'Go to link to see account',
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {

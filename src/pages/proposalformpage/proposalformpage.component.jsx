@@ -1,18 +1,18 @@
-import React from "react";
-import APIRequest from "../../utils/apirequest";
+import React from 'react';
+import APIRequest from '../../utils/apirequest';
 
-import "./proposalformpage.styles.scss";
+import './proposalformpage.styles.scss';
 
-import { ReactComponent as LeftLightArrowSvg } from "../../assets/svg/leftlightarrow.svg";
+import { ReactComponent as LeftLightArrowSvg } from '../../assets/svg/leftlightarrow.svg';
 
-import InputField from "../../components/fieldInput/fieldinput.component";
-import Button from "../../components/button/button.component";
+import InputField from '../../components/fieldInput/fieldinput.component';
+import Button from '../../components/button/button.component';
 
 class ProposalFormPage extends React.Component {
   constructor() {
     super();
 
-    this.state = { field: "Physics" };
+    this.state = { field: 'Physics' };
 
     this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -32,11 +32,12 @@ class ProposalFormPage extends React.Component {
   async onFormSubmit(e) {
     e.preventDefault();
 
-    const data = await new APIRequest("post", "proposal", this.state).request();
-
-    console.log(data);
-
-    this.props.history.push("/home");
+    new APIRequest('post', 'proposal', this.state)
+      .request()
+      .then((_) => {
+        this.props.history.push('/home');
+      })
+      .catch((_) => {});
   }
 
   render() {
@@ -70,7 +71,7 @@ class ProposalFormPage extends React.Component {
             <label htmlFor="title">Title of your proposal</label>
             <InputField
               id="title"
-              style={{ backgroundColor: "#F6F6F6", padding: "2%" }}
+              style={{ backgroundColor: '#F6F6F6', padding: '2%' }}
               type="text"
               maginLeft="0"
               placeHolder="Title of your proposal"

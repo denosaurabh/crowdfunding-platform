@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import APIRequest from "../../utils/apirequest";
+import APIRequest from '../../utils/apirequest';
 
-import "./universitypage.styles.scss";
+import './universitypage.styles.scss';
 
-import { ReactComponent as LeftLightArrowSvg } from "../../assets/svg/leftlightarrow.svg";
-import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
+import { ReactComponent as LeftLightArrowSvg } from '../../assets/svg/leftlightarrow.svg';
+import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
-import NavBar from "../../components/navbar/navbar.component";
-import Button from "../../components/button/button.component";
+import NavBar from '../../components/navbar/navbar.component';
+import Button from '../../components/button/button.component';
 
 class UniversityPage extends React.Component {
   constructor() {
@@ -20,14 +20,12 @@ class UniversityPage extends React.Component {
   async componentDidMount() {
     const universityId = this.props.match.params.id;
 
-    const res = await new APIRequest(
-      "get",
-      `university/${universityId}`
-    ).request();
-
-    this.setState({ data: res.data.data.data });
-
-    console.log(res);
+    new APIRequest('get', `university/${universityId}`)
+      .request()
+      .then((res) => {
+        this.setState({ data: res.data.data.data });
+      })
+      .catch((_) => {});
   }
 
   render() {
@@ -48,18 +46,18 @@ class UniversityPage extends React.Component {
             <h2 className="university-page-content__span --subpara --light --smallfont">
               {`Joined On: ${new Date(this.state.data.formedOn).getDate()} ${
                 [
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "April",
-                  "May",
-                  "June",
-                  "July",
-                  "August",
-                  "Sep",
-                  "Oct",
-                  "Nov",
-                  "Dec",
+                  'Jan',
+                  'Feb',
+                  'Mar',
+                  'April',
+                  'May',
+                  'June',
+                  'July',
+                  'August',
+                  'Sep',
+                  'Oct',
+                  'Nov',
+                  'Dec',
                 ][new Date(this.state.data.formedOn).getMonth()]
               } ${new Date(this.state.data.formedOn).getFullYear()}`}
             </h2>

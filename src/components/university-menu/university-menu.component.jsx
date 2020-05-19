@@ -32,13 +32,14 @@ class UniversityMenu extends React.Component {
   }
 
   async onEmailSubmit() {
-    const res = await new APIRequest(
-      'post',
-      `university/${this.props.universityId}/invite`,
-      { userEmail: this.state.userEmail }
-    ).request();
-
-    this.setState({ userEmail: '' });
+    new APIRequest('post', `university/${this.props.universityId}/invite`, {
+      userEmail: this.state.userEmail,
+    })
+      .request()
+      .then((_) => {
+        this.setState({ userEmail: '' });
+      })
+      .catch((_) => {});
   }
 
   async onMemberRemoveClick(memberId) {
@@ -51,7 +52,8 @@ class UniversityMenu extends React.Component {
       .request()
       .then(() => {
         removeUniversityMember(memberId);
-      });
+      })
+      .catch((err) => {});
   }
 
   onEmailChange(e) {

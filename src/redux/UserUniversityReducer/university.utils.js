@@ -1,5 +1,3 @@
-import APIRequest from '../../utils/apirequest';
-
 export const sortUniversityProposals = (
   university,
   allProposals,

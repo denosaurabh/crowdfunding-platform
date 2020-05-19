@@ -1,12 +1,12 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
-import "./Ideaformpage.styles.scss";
+import './Ideaformpage.styles.scss';
 
-import { ReactComponent as LeftLightArrowSvg } from "../../assets/svg/leftlightarrow.svg";
+import { ReactComponent as LeftLightArrowSvg } from '../../assets/svg/leftlightarrow.svg';
 
-import InputField from "../../components/fieldInput/fieldinput.component";
-import Button from "../../components/button/button.component";
+import InputField from '../../components/fieldInput/fieldinput.component';
+import Button from '../../components/button/button.component';
 
 class IdeaFormPage extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class IdeaFormPage extends React.Component {
   }
 
   onInputChange(e) {
-    console.log("Something Changed !");
+    console.log('Something Changed !');
 
     const { name, value } = e.target;
 
@@ -29,10 +29,10 @@ class IdeaFormPage extends React.Component {
   onIdeaFormSubmit(e) {
     e.preventDefault();
 
-    const token = localStorage.getItem("USER_TOKEN");
+    const token = localStorage.getItem('USER_TOKEN');
 
     axios({
-      method: "post",
+      method: 'post',
       url: `${process.env.REACT_APP_API_URL}/v1/api/idea`,
       data: {
         ...this.state,
@@ -46,11 +46,13 @@ class IdeaFormPage extends React.Component {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => {
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {});
 
-    this.props.history.push("/home");
+    this.props.history.push('/home');
   }
 
   render() {

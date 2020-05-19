@@ -2,12 +2,9 @@ import React from 'react';
 
 import './sidebar.styles.scss';
 
-import APIRequest from '../../utils/apirequest';
-
 import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
 import MemberBox from '../memberbox/memberbox.component';
-import InputField from '../fieldInput/fieldinput.component';
 import withSpinner from '../withSpinner/withSpinner.component';
 import UniversityMenu from '../university-menu/university-menu.component';
 

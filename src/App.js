@@ -42,6 +42,7 @@ class App extends React.Component {
     console.log('Application has started successfully! 👍');
 
     if (localStorage.getItem('USER_TOKEN') && this.props.currentUser) {
+      console.log('REFRESHING USER!')
       const { setCurrentUserMeAsync } = this.props;
       setCurrentUserMeAsync();
     }

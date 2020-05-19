@@ -24,52 +24,49 @@ class ProposalBox extends React.Component {
   onProposalAcceptClick = async () => {
     console.log(this.props.universityId);
 
-    const res = await new APIRequest(
-      'post',
-      `proposal/${this.props._id}/accept`,
-      {
-        universityId: this.props.universityId,
-      }
-    ).request();
-
-    this.props.setProposalAcceptance(this.props._id, 'accept');
-    console.log(res);
+    new APIRequest('post', `proposal/${this.props._id}/accept`, {
+      universityId: this.props.universityId,
+    })
+      .request()
+      .then((_) => {
+        this.props.setProposalAcceptance(this.props._id, 'accept');
+      })
+      .catch((err) => {});
   };
 
   onProposalDeclineClick = async () => {
-    const res = await new APIRequest(
-      'post',
-      `proposal/${this.props._id}/decline`,
-      {
-        universityId: this.props.universityId,
-      }
-    ).request();
-
-    this.props.setProposalAcceptance(this.props._id, 'decline');
-    console.log(res);
+    new APIRequest('post', `proposal/${this.props._id}/decline`, {
+      universityId: this.props.universityId,
+    })
+      .request()
+      .then((_) => {
+        this.props.setProposalAcceptance(this.props._id, 'decline');
+      })
+      .catch((err) => {});
   };
 
   archiveProposal = async () => {
-    const res = await new APIRequest(
-      'post',
-      `proposal/${this.props._id}/archive`,
-      {
-        universityId: this.props.universityId,
-      }
-    ).request();
+    new APIRequest('post', `proposal/${this.props._id}/archive`, {
+      universityId: this.props.universityId,
+    })
+      .request()
+      .then((_) => {
+        this.props.archiveProposal(this.props._id);
 
-    this.props.archiveProposal(this.props._id);
-    console.log(res);
-
-    this.setState({ showMenu: false });
+        this.setState({ showMenu: false });
+      })
+      .catch((_) => {});
   };
 
   sendEmailToUserClickHandler = async () => {
-    await new APIRequest('post', `proposal/${this.props._id}/sendEmail`, {
+    new APIRequest('post', `proposal/${this.props._id}/sendEmail`, {
       message: this.state.proposalUserEmailMessage,
-    }).request();
-
-    this.setState({ showMenu: false, showArchivePopup: false });
+    })
+      .request()
+      .then((res) => {
+        this.setState({ showMenu: false, showArchivePopup: false });
+      })
+      .catch((_) => {});
   };
 
   render() {

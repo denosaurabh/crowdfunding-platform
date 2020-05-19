@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import APIRequest from "../../utils/apirequest";
+import APIRequest from '../../utils/apirequest';
 
-import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
+import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
-import "./accountverify.styles.scss";
+import './accountverify.styles.scss';
 
 class AccountVerify extends React.Component {
   state = {};
@@ -13,11 +13,14 @@ class AccountVerify extends React.Component {
     console.log(this.props.location.search);
     const query = this.props.location.search;
 
-    const res = await new APIRequest("patch", `user/verify/account${query}`).request();
-
-    if (res.data.status === "success") {
-      this.props.history.push("/home");
-    }
+    APIRequest('patch', `user/verify/account${query}`)
+      .request()
+      .then((res) => {
+        if (res.data.status === 'success') {
+          this.props.history.push('/home');
+        }
+      })
+      .catch((_) => {});
   }
 
   render() {

@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import APIRequest from "../../utils/apirequest";
+import APIRequest from '../../utils/apirequest';
 
-import "./proposalpage.styles.scss";
+import './proposalpage.styles.scss';
 
-import { ReactComponent as LeftLightArrow } from "../../assets/svg/leftlightarrow.svg";
-import { ReactComponent as TopArrowBlueBorder } from "../../assets/svg/toparrowblueborder.svg";
-import { ReactComponent as SendSvg } from "../../assets/svg/send.svg";
-import { ReactComponent as LoadingSvg } from "../../assets/svg/loading.svg";
+import { ReactComponent as LeftLightArrow } from '../../assets/svg/leftlightarrow.svg';
+import { ReactComponent as TopArrowBlueBorder } from '../../assets/svg/toparrowblueborder.svg';
+import { ReactComponent as SendSvg } from '../../assets/svg/send.svg';
+import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
 
-import Navbar from "../../components/navbar/navbar.component";
-import InputField from "../../components/fieldInput/fieldinput.component";
-import Comment from "../../components/comment/comment.component";
+import Navbar from '../../components/navbar/navbar.component';
+import InputField from '../../components/fieldInput/fieldinput.component';
+import Comment from '../../components/comment/comment.component';
 
 class ProposalPage extends React.Component {
   constructor() {
@@ -26,13 +26,13 @@ class ProposalPage extends React.Component {
   async componentDidMount() {
     const proposalId = this.props.match.params.id;
 
-    const {
-      data: {
-        data: { data: proposal },
-      },
-    } = await new APIRequest("get", `proposal/${proposalId}`).request();
-
-    this.setState({ proposal });
+    new APIRequest('get', `proposal/${proposalId}`)
+      .request()
+      .then((res) => {
+        console.log('IN THIS!')
+        this.setState({ proposal: res.data.data.data });
+      })
+      .catch((_) => {});
   }
 
   async onMessageSubmit(e) {
@@ -40,17 +40,17 @@ class ProposalPage extends React.Component {
 
     const proposalId = this.props.match.params.id;
 
-    this.setState({ comment: "" });
+    this.setState({ comment: '' });
 
     const newComment = await new APIRequest(
-      "post",
+      'post',
       `proposal/${proposalId}/comment`,
       {
         description: this.state.comment,
       }
     ).request();
 
-    console.log(newComment, "PROPOSAL PAGE!!!!!");
+    console.log(newComment, 'PROPOSAL PAGE!!!!!');
 
     let updatedAllComments = this.state.proposal.comments;
     updatedAllComments.unshift(newComment.data.data);
@@ -67,11 +67,11 @@ class ProposalPage extends React.Component {
     const proposalId = this.props.match.params.id;
 
     const res = await new APIRequest(
-      "post",
+      'post',
       `proposal/${proposalId}/upvote`
     ).request();
 
-    if (res.data.message !== "Already Upvoted!") {
+    if (res.data.message !== 'Already Upvoted!') {
       this.setState({
         proposal: {
           ...this.state.proposal,
@@ -135,7 +135,7 @@ class ProposalPage extends React.Component {
               <form onSubmit={this.onMessageSubmit}>
                 <InputField
                   type="text"
-                  style={{ maxWidth: "100%" }}
+                  style={{ maxWidth: '100%' }}
                   value={this.state.comment}
                   onChangeHandler={(e) =>
                     this.setState({ comment: e.target.value })

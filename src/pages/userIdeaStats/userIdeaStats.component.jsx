@@ -19,11 +19,13 @@ class UserIdeaStats extends React.Component {
 
     new APIRequest('get', `user/myIdeas/${ideaId}`)
       .request()
-      .then((res) => this.setState({ idea: res.data.data }));
+      .then((res) => this.setState({ idea: res.data.data }))
+      .catch((err) => {});
 
     new APIRequest('get', `fund/${ideaId}`)
       .request()
-      .then((res) => this.setState({ ideaFunds: res.data.data }));
+      .then((res) => this.setState({ ideaFunds: res.data.data }))
+      .catch((err) => {});
   }
 
   render() {
