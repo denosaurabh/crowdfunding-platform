@@ -1,0 +1,109 @@
+.user-proposals-stats {
+  &-content {
+    padding: 3%;
+
+    // Header
+    &-header {
+      display: flex;
+
+      width: 100%;
+
+      svg {
+        position: relative;
+        top: 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &__heading {
+        padding-left: 3%;
+        font-size: 1.4rem;
+
+        width: 90%;
+      }
+
+      &__button {
+        float: right;
+      }
+    }
+
+    // Description
+    &__description {
+      padding: 0 15% 5% 5%;
+      line-height: 24px;
+      font-weight: 500;
+      color: grey;
+    }
+
+    // Upvotes
+    &__upvotes {
+      width: 90%;
+
+      margin-left: 5%;
+      padding-bottom: 50px;
+
+      letter-spacing: 3px;
+      color: #ff005c;
+
+      &__span {
+        padding-left: 10px;
+
+        color: rgb(78, 78, 78);
+        font-size: 0.7rem;
+        font-weight: light;
+        letter-spacing: 1px;
+      }
+
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    // Fund Box
+    &-fund {
+      margin: 2% 0;
+      padding-left: 5%;
+
+      &__heading {
+        font-weight: 600;
+        color: #464646;
+
+        margin-bottom: 40px;
+      }
+
+      // Fund
+      &__fund {
+        width: 90%;
+
+        padding-bottom: 20px;
+
+        letter-spacing: 3px;
+        color: #0f00ff;
+
+        &__span {
+          padding-left: 10px;
+
+          color: rgb(78, 78, 78);
+          font-size: 0.7rem;
+          font-weight: light;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    // Recent Fund
+    &-recentfund {
+      margin: 2% 5%;
+      padding-top: 2%;
+
+      border-top: 1px solid #dcdcdc;
+
+      &__heading {
+        font-weight: 600;
+        color: #464646;
+
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

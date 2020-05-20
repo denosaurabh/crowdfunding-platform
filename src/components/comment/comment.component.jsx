@@ -7,11 +7,11 @@ const Comment = ({
   byUserJob,
   description,
   uploadedOn,
-  imageCover,
+  byUserImg,
 }) => (
   <div className="comment">
     <img
-      src={`${process.env.REACT_APP_API_URL}/images/users/${imageCover}`}
+      src={`${process.env.REACT_APP_API_URL}/images/users/${byUserImg}`}
       alt="user"
       className="comment__img"
     />

@@ -45,9 +45,9 @@ export const getUniversityStartAsync = () => {
   return (dispatch) => {
     dispatch(getUniversityStart());
 
-    new APIRequest('get', 'university/myUniversity', null)
+    new APIRequest('get', 'university/myUniversity')
       .request()
-      .then((res) => dispatch(getUniversitySuccess(res.data.data.university)))
+      .then((res) => dispatch(getUniversitySuccess(res.data.data)))
       .catch((err) => dispatch(getUniversityFailed(err)));
   };
 };

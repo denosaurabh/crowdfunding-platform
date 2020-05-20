@@ -26,16 +26,11 @@ export const setCurrentUser = (user) => ({
 });
 
 export const setCurrentUserMeAsync = () => {
-  console.log('IN!');
-
   return (dispatch) => {
-    console.log('IN! 2');
 
     new APIRequest('get', 'user/me')
       .request()
       .then((res) => {
-        console.log('IN! 3');
-
         dispatch(setCurrentUser(res.data.data));
       })
       .catch((err) => {

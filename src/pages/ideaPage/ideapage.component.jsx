@@ -75,7 +75,7 @@ class IdeaPage extends React.Component {
           });
         }
       })
-      .catch((err) => {});
+      .catch(() => {});
   }
 
   // Stripe Payment
@@ -87,30 +87,33 @@ class IdeaPage extends React.Component {
 
     console.log(stripe, elements);
 
-    const data = await new APIRequest(
+    new APIRequest(
       'post',
       `idea/${ideaId}/support?amount=${this.state.fundIdeaAmount}`
-    ).request();
+    )
+      .request()
+      .then(async (data) => {
+        const result = await stripe.confirmCardPayment(
+          data.data.data.client_secret,
+          {
+            payment_method: {
+              card: elements.getElement(CardNumberElement),
+              billing_details: {
+                name: localStorage.getItem('USER_ID'),
+              },
+            },
+          }
+        );
 
-    const result = await stripe.confirmCardPayment(
-      data.data.data.client_secret,
-      {
-        payment_method: {
-          card: elements.getElement(CardNumberElement),
-          billing_details: {
-            name: localStorage.getItem('USER_ID'),
-          },
-        },
-      }
-    );
-
-    if (result.error) {
-      console.log(result.error.message);
-    } else {
-      if (result.paymentIntent.status === 'succeeded') {
-        console.log('Payment Successed!');
-      }
-    }
+        if (result.error) {
+          console.log(result.error.message);
+        } else {
+          if (result.paymentIntent.status === 'succeeded') {
+            console.log('Payment Successed!');
+          }
+        }
+      })
+      .catch(() => {});
   };
 
   onPopupDiamondClick(e, amount) {

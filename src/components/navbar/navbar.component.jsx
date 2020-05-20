@@ -12,6 +12,7 @@ import { ReactComponent as ProposalsSvg } from './../../assets/svg/proposals.svg
 import { ReactComponent as UniversitySvg } from './../../assets/svg/university.svg';
 import { ReactComponent as SettingsSvg } from './../../assets/svg/settings.svg';
 import { ReactComponent as LoginSvg } from './../../assets/svg/login.svg';
+import { ReactComponent as UserProposalsSvg } from './../../assets/svg/user-proposals.svg';
 
 class NavBar extends React.Component {
   constructor() {
@@ -47,6 +48,12 @@ class NavBar extends React.Component {
               </li>
             </Link>
           ) : null}
+
+          <Link to="/yourProposals">
+            <li className="navbar-ul-li">
+              <UserProposalsSvg />
+            </li>
+          </Link>
 
           {currentUser ? (
             <Link to="/settings">

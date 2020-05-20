@@ -14,7 +14,7 @@ const IdeaBox = ({
   title,
   description,
   _id,
-  uploadedBy,
+  uploadByName,
   upvotes,
   fundPercent,
   history,
@@ -30,7 +30,7 @@ const IdeaBox = ({
           ? `${description.slice(0, 50)} ...`
           : description}
       </p>
-      <span className="idea-box-content__by --subpara">by {uploadedBy}</span>
+      <span className="idea-box-content__by --subpara">by {uploadByName}</span>
       <span className="idea-box-content__data --subpara">
         {upvotes ? upvotes : 0} upvotes
       </span>

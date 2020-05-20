@@ -29,7 +29,7 @@ class ProposalPage extends React.Component {
     new APIRequest('get', `proposal/${proposalId}`)
       .request()
       .then((res) => {
-        console.log('IN THIS!')
+        console.log('IN THIS!');
         this.setState({ proposal: res.data.data.data });
       })
       .catch((_) => {});
@@ -66,19 +66,19 @@ class ProposalPage extends React.Component {
   async onUpvoteClick() {
     const proposalId = this.props.match.params.id;
 
-    const res = await new APIRequest(
-      'post',
-      `proposal/${proposalId}/upvote`
-    ).request();
-
-    if (res.data.message !== 'Already Upvoted!') {
-      this.setState({
-        proposal: {
-          ...this.state.proposal,
-          upvotes: this.state.proposal.upvotes + 1,
-        },
-      });
-    }
+    new APIRequest('post', `proposal/${proposalId}/upvote`)
+      .request()
+      .then((res) => {
+        if (res.data.message !== 'Already Upvoted!') {
+          this.setState({
+            proposal: {
+              ...this.state.proposal,
+              upvotes: this.state.proposal.upvotes + 1,
+            },
+          });
+        }
+      })
+      .catch((_) => {});
   }
 
   render() {

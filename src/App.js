@@ -29,6 +29,7 @@ import BusinessAccountPage from './pages/businessAccountPage/businessaccountpage
 import AccountVerify from './pages/accountVerify/accountverify.component';
 import UserVerifyPage from './pages/userVerifyPage/userverify.component';
 import UserIdeasPage from './pages/userIdeasPage/userIdeasPage.component.jsx';
+import UserProposalsPage from './pages/userProposalsPage/userProposalsPage.component';
 import UserIdeaStats from './pages/userIdeaStats/userIdeaStats.component';
 
 class App extends React.Component {
@@ -42,7 +43,7 @@ class App extends React.Component {
     console.log('Application has started successfully! 👍');
 
     if (localStorage.getItem('USER_TOKEN') && this.props.currentUser) {
-      console.log('REFRESHING USER!')
+      console.log('REFRESHING USER!');
       const { setCurrentUserMeAsync } = this.props;
       setCurrentUserMeAsync();
     }
@@ -79,12 +80,23 @@ class App extends React.Component {
               />
               <Route exact path="/home" component={ProjectsPage} />
 
+              <Route exact path="/yourIdeas" component={UserIdeasPage} />
               <Route
                 exact
                 path="/yourIdeas/:ideaId"
                 component={UserIdeaStats}
               />
-              <Route exact path="/yourIdeas" component={UserIdeasPage} />
+
+              <Route
+                exact
+                path="/yourProposals"
+                component={UserProposalsPage}
+              />
+              <Route
+                exact
+                path="/yourProposals/:id"
+                component={ProposalPage}
+              />
 
               <Route exact path="/idea/:id" component={IdeaPage} />
               <Route exact path="/university/:id" component={UniversityPage} />
