@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import {
   ElementsConsumer,
@@ -9,6 +10,8 @@ import {
 
 import './ideapage.styles.scss';
 
+import { setCurrentError } from '../../redux/errorReducer/error.actions';
+
 import NavBar from '../../components/navbar/navbar.component';
 import Button from '../../components/button/button.component';
 import Diamond from '../../components/diamondSvg/diamondsvg.component';
@@ -16,6 +19,7 @@ import Diamond from '../../components/diamondSvg/diamondsvg.component';
 import { ReactComponent as LeftLightArrowSvg } from '../../assets/svg/leftlightarrow.svg';
 import { ReactComponent as CutSvg } from '../../assets/svg/cut.svg';
 import { ReactComponent as LoadingSvg } from '../../assets/svg/loading.svg';
+
 import APIRequest from '../../utils/apirequest';
 
 import ErrorBoundary from '../errorBoundary/errorboundary';
@@ -57,13 +61,11 @@ class IdeaPage extends React.Component {
     const token = localStorage.getItem('USER_TOKEN');
     console.log(token);
 
-    axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/v1/api/idea/${ideaId}?func=upvote`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    new APIRequest(
+      'post',
+      `idea/${ideaId}?func=upvote`
+    )
+      .request()
       .then((res) => {
         console.log(res);
 
@@ -107,9 +109,17 @@ class IdeaPage extends React.Component {
 
         if (result.error) {
           console.log(result.error.message);
+          const { setCurrentError } = this.props;
+          setCurrentError({ status: 'failed', message: result.error.message });
         } else {
           if (result.paymentIntent.status === 'succeeded') {
-            console.log('Payment Successed!');
+            const { setCurrentError } = this.props;
+
+            setCurrentError({
+              status: 'success',
+              message:
+                'Payment Successed! Great Thanks for Supporting the Idea :D',
+            });
           }
         }
       })
@@ -348,4 +358,8 @@ class IdeaPage extends React.Component {
   }
 }
 
-export default IdeaPage;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentError: (err) => dispatch(setCurrentError(err)),
+});
+
+export default connect(null, mapDispatchToProps)(IdeaPage);

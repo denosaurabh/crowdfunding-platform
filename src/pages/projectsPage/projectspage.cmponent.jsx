@@ -12,6 +12,7 @@ import FieldInput from '../../components/fieldInput/fieldinput.component';
 
 import IdeaCard from '../../components/ideabox/ideabox.component';
 import UniversityCard from '../../components/universityBox/universitybox.component';
+import NoData from '../../components/no-data/no-data.component';
 
 class ProjectsPage extends React.Component {
   constructor() {
@@ -174,8 +175,6 @@ class ProjectsPage extends React.Component {
                   return <IdeaCard key={i} {...el} />;
                 } else if (searchIdeaOrCollection === 'university') {
                   return <UniversityCard key={i} {...el} />;
-                } else {
-                  return null;
                 }
               })
             ) : (

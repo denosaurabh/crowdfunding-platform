@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import "./errorhandler.styles.scss";
+import './errorhandler.styles.scss';
 
-import { setCurrentError } from "../../redux/errorReducer/error.actions";
+import { setCurrentError } from '../../redux/errorReducer/error.actions';
 
 class ErrorHandler extends React.Component {
   componentDidMount() {
@@ -20,8 +20,8 @@ class ErrorHandler extends React.Component {
         className="error --smallfont --maintext"
         style={{
           backgroundColor:
-            this.props.currentError.status === "failed" ? "red" : "lightgreen",
-          display: this.props.currentError.message ? "block" : "none",
+            this.props.currentError.status === 'failed' ? 'red' : 'lightgreen',
+          display: this.props.currentError.message ? 'block' : 'none',
         }}
       >
         {this.props.currentError.message}

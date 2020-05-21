@@ -3,8 +3,6 @@ import React from 'react';
 import './verifybanner.styles.scss';
 
 const VerifyBanner = ({ currentUser }) => {
-  console.log(currentUser);
-
   if (currentUser && !currentUser.userVerified) {
     return (
       <p className="verify-banner --maintext">

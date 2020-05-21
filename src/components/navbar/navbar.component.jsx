@@ -36,11 +36,14 @@ class NavBar extends React.Component {
               <HomeSvg />
             </li>
           </Link>
-          <li className="navbar-ul-li">
-            <Link to="/yourIdeas">
-              <ProposalsSvg />
-            </Link>
-          </li>
+          {currentUser ? (
+            <li className="navbar-ul-li">
+              <Link to="/yourIdeas">
+                <ProposalsSvg />
+              </Link>
+            </li>
+          ) : null}
+
           {currentUser?.university ? (
             <Link to="/myuniversity">
               <li className="navbar-ul-li">
@@ -49,11 +52,13 @@ class NavBar extends React.Component {
             </Link>
           ) : null}
 
-          <Link to="/yourProposals">
-            <li className="navbar-ul-li">
-              <UserProposalsSvg />
-            </li>
-          </Link>
+          {currentUser ? (
+            <Link to="/yourProposals">
+              <li className="navbar-ul-li">
+                <UserProposalsSvg />
+              </li>
+            </Link>
+          ) : null}
 
           {currentUser ? (
             <Link to="/settings">

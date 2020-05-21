@@ -1,4 +1,4 @@
 export const setCurrentError = (error) => ({
-  type: "SET_ERROR",
+  type: 'SET_ERROR',
   payload: error,
 });

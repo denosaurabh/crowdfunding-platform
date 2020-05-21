@@ -50,8 +50,10 @@ class UniversityMenu extends React.Component {
 
     new APIRequest('post', `university/${_id}/member/${memberId}/remove`)
       .request()
-      .then(() => {
-        removeUniversityMember(memberId);
+      .then((res) => {
+        if (res.data.status === 'success') {
+          removeUniversityMember(memberId);
+        }
       })
       .catch((err) => {});
   }
