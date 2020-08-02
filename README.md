@@ -1,2 +1,2 @@
-A great client Mariorossi CrowdFunding Platform React Application. (still in experimental Stage) 😏  
+The Crowd-Funding Platform React Application. (Project Deprecated after completed) 😭😭
 
